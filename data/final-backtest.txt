@@ -1,0 +1,105 @@
+
+=== CRYPTO BOT — FINAL DUAL-REGIME DEADBAND ALLOCATOR 6.0 ===
+Symbols       : BNBUSDT, ETHUSDT, LINKUSDT
+Regime slow   : BTCUSDT 1D close/EMA50/EMA200 + 5-day EMA50 slope
+Regime fast   : BTCUSDT 4H close/EMA20/EMA50 + 12H EMA50 slope/momentum
+Ranking       : cross-sectional 30D return + 90D return + EMA50/EMA200 strength
+Allocation    : STRONG_BULL 100% top-2; RECOVERY 50% top-1; NEUTRAL 0%; BEAR 0%
+Rebalance     : weekly weekday=0 UTC, drift band=10.0%
+Min order     : $4.90; defensive exit=ON; regime-transition rebalance=ON
+Hysteresis    : RECOVERY 1d; NEUTRAL 2d; STRONG_BULL 1d; re-entry lockout 0d; BEAR immediate
+Fast deadband : enter >= +0.10% EMA20/50 gap; hold RECOVERY until <= -0.10%
+Slow-bull mix : 50% RECOVERY when 1D stays bullish but 4H is mixed
+Costs         : fee 0.100%/side + slippage 0.050%/side
+Window        : 2025-05-06 00:00 UTC -> 2026-09-06 00:00 UTC
+
+=== FULL EVALUATION PERIOD ===
+Initial cash  : $10.0000
+Final equity  : $12.7519
+Return        : +27.52%
+Annualized    : +19.90%
+Max drawdown  : -11.38%
+Volatility    : 23.42% annualized
+Calmar        : 1.75
+Daily PF      : 1.24
+Avg exposure  : 18.49%
+Rebalances    : 57 (51 on regime changes)
+Trade legs    : 65
+Turnover      : $370.8459
+Costs         : $0.5563 (fees $0.3708 + slippage $0.1854)
+
+=== IMPACT VS SIMPLE DUAL-REGIME CONTROL ===
+  Metric                 Raw control    Hysteresis      Delta
+  ---------------------  -----------    ----------    --------
+  Return                    +20.56%      +27.52%      +6.96pp
+  Max drawdown              -11.31%      -11.38%      -0.08pp
+  Trade legs                      64            65          +1
+  Regime changes                 144           146          +2
+  Turnover               $  378.7024    $ 370.8459    $ -7.8565
+  Costs                  $    0.5681    $   0.5563    $ -0.0118
+
+=== STABILIZED REGIME DAYS ===
+  BEAR          68 days   13.91%
+  NEUTRAL      237 days   48.47%
+  RECOVERY     140 days   28.63%
+  STRONG_BULL   44 days    9.00%
+
+=== HYSTERESIS DIAGNOSTICS ===
+Raw regime changes       : 193
+Stabilized regime changes: 146
+Filtered regime changes  : 47
+Held/suppressed days     : 54
+Re-entry lockout days    : 0
+
+=== BENCHMARKS (SAME PERIOD / SAME STARTING CASH) ===
+  CASH                            +0.00%  DD=   0.00%  Calmar=    - -> $10.0000
+  BTCUSDT HOLD                   -15.19%  DD= -52.97%  Calmar=-0.22 -> $8.4808
+  BNBUSDT HOLD                   +26.00%  DD= -58.20%  Calmar= 0.32 -> $12.6002
+  ETHUSDT HOLD                   +38.14%  DD= -67.55%  Calmar= 0.40 -> $13.8144
+  LINKUSDT HOLD                   -3.05%  DD= -73.12%  Calmar=-0.03 -> $9.6945
+  EQUAL-WEIGHT HOLD              +20.36%  DD= -63.59%  Calmar= 0.23 -> $12.0364
+
+=== WALK-FORWARD (90-DAY FOLDS, 240-DAY WARMUP) ===
+  #  Period                      Allocator    DD      Rebal  BTC hold   Equal-wt   Equal DD
+  -  --------------------------  ---------  -------  -----  ---------  ---------  --------
+  1  2025-05-06 -> 2025-08-04     +7.86%    -6.85%     27    +21.45%    +52.80%    -19.43%
+  2  2025-08-05 -> 2025-11-03    +14.13%   -10.12%     17     -7.36%     +5.06%    -25.65%
+  3  2025-11-04 -> 2026-02-02     -3.50%    -3.84%      3    -26.12%    -30.88%    -34.33%
+  4  2026-02-03 -> 2026-05-04     +2.34%    -3.68%      3     +1.43%     -8.01%    -20.92%
+  5  2026-05-05 -> 2026-08-03     -2.78%    -3.21%      3    -20.46%    -12.84%    -28.08%
+  6  2026-08-04 -> 2026-09-06    +12.60%    -3.87%      1    +26.48%    +41.51%     -5.00%
+
+=== ROBUSTNESS SUMMARY ===
+Profitable folds       : 4/6
+Beat equal-weight folds: 4/6
+Mean fold return       : +5.11%
+Median fold return     : +5.10%
+Compounded folds       : +33.08%
+Worst fold return      : -3.50%
+Worst fold drawdown    : -10.12%
+Mean rebalance events  : 9.0
+Total fold trade legs  : 62
+
+=== RESEARCH GATE ===
+  PASS  positive compounded walk-forward
+  PASS  profitable folds >= 60%
+  PASS  worst DD better than -20%
+  PASS  full-period return positive
+  PASS  Calmar >= equal-weight hold
+  PASS  costs <= 10% of initial capital
+Overall: RESEARCH-READY FOR PAPER FORWARD TEST
+
+=== LAST ALLOCATION EVENTS ===
+  2026-01-19 00:00 UTC raw=NEUTRAL     stable=RECOVERY    trigger=WEEKLY        selected=BNBUSDT            legs= 2 leaders=[BNBUSDT:67, ETHUSDT:33]
+  2026-01-21 00:00 UTC raw=BEAR        stable=BEAR        trigger=DEFENSIVE     selected=CASH               legs= 1 leaders=[BNBUSDT:100]
+  2026-04-10 00:00 UTC raw=RECOVERY    stable=RECOVERY    trigger=REGIME_CHANGE selected=ETHUSDT            legs= 1 leaders=[ETHUSDT:100]
+  2026-04-30 00:00 UTC raw=BEAR        stable=BEAR        trigger=DEFENSIVE     selected=CASH               legs= 1 leaders=[none]
+  2026-05-02 00:00 UTC raw=RECOVERY    stable=RECOVERY    trigger=REGIME_CHANGE selected=ETHUSDT            legs= 1 leaders=[ETHUSDT:100]
+  2026-05-11 00:00 UTC raw=RECOVERY    stable=RECOVERY    trigger=WEEKLY        selected=LINKUSDT           legs= 2 leaders=[LINKUSDT:67, ETHUSDT:50, BNBUSDT:33]
+  2026-05-16 00:00 UTC raw=BEAR        stable=BEAR        trigger=DEFENSIVE     selected=CASH               legs= 1 leaders=[none]
+  2026-07-22 00:00 UTC raw=RECOVERY    stable=RECOVERY    trigger=REGIME_CHANGE selected=LINKUSDT           legs= 1 leaders=[LINKUSDT:67, ETHUSDT:33]
+  2026-07-30 00:00 UTC raw=BEAR        stable=BEAR        trigger=DEFENSIVE     selected=CASH               legs= 1 leaders=[none]
+  2026-08-20 00:00 UTC raw=RECOVERY    stable=RECOVERY    trigger=REGIME_CHANGE selected=LINKUSDT           legs= 1 leaders=[LINKUSDT:83, ETHUSDT:33, BNBUSDT:33]
+
+Machine-readable report: /mnt/data/crypto-bot-final-6.0/data/allocator-latest.json
+
