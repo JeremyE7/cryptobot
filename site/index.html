@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>$10 / forward lab</title>
+  <meta name="description" content="Seguimiento público del experimento paper trading de $10." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Inicio">
+        <span class="brand-mark">10</span>
+        <span class="brand-copy">forward<br/>lab</span>
+      </a>
+      <div class="status-pill"><span class="pulse"></span><span id="integrityLabel">cargando</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">PAPER TRADING · SIN DINERO REAL</p>
+        <h1>Diez dólares.<br/><span>Mercado real.</span><br/>Cero retoques.</h1>
+        <p class="lede">Un experimento forward con una estrategia congelada. Si gana, queda registrado. Si pierde, también.</p>
+      </div>
+
+      <div class="hero-number" aria-live="polite">
+        <span class="currency">$</span><span id="equity">10.00</span>
+        <div class="hero-meta">
+          <span id="returnValue">+0.00%</span>
+          <span>desde $10.00</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Métricas principales">
+      <article><span>régimen</span><strong id="regime">—</strong></article>
+      <article><span>invertido</span><strong id="invested">$0.00</strong></article>
+      <article><span>cash</span><strong id="cash">$10.00</strong></article>
+      <article><span>drawdown máx.</span><strong id="drawdown">0.00%</strong></article>
+      <article><span>operaciones</span><strong id="trades">0</strong></article>
+      <article><span>costos</span><strong id="costs">$0.00</strong></article>
+    </section>
+
+    <section class="grid">
+      <article class="panel chart-panel">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">CURVA DE EQUITY</span>
+            <h2>¿Sobrevive el billete?</h2>
+          </div>
+          <span class="tiny" id="lastUpdate">—</span>
+        </div>
+        <div class="chart-wrap">
+          <svg id="equityChart" viewBox="0 0 900 320" role="img" aria-label="Evolución de la equity">
+            <line class="baseline" x1="0" x2="900" y1="160" y2="160" />
+            <path id="areaPath" class="area" d="" />
+            <path id="linePath" class="line" d="" />
+          </svg>
+          <div class="chart-empty" id="chartEmpty">La curva aparecerá cuando haya snapshots suficientes.</div>
+        </div>
+      </article>
+
+      <article class="panel positions-panel">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">POSICIONES</span>
+            <h2>Qué tiene ahora</h2>
+          </div>
+        </div>
+        <div id="positions" class="positions-list">
+          <div class="position-row"><span>CASH</span><strong>100%</strong></div>
+        </div>
+      </article>
+
+      <article class="panel thesis-panel">
+        <span class="kicker">REGLAS DEL JUEGO</span>
+        <h2>No mover la portería.</h2>
+        <p>La estrategia <strong>6.0-frozen</strong> no se optimiza durante el forward test. El objetivo no es hacer que el gráfico se vea bonito, sino comprobar si el comportamiento histórico resiste datos nuevos.</p>
+        <div class="rule-grid">
+          <span><b>01</b> datos públicos de Binance</span>
+          <span><b>02</b> costos simulados incluidos</span>
+          <span><b>03</b> decisiones persistentes</span>
+          <span><b>04</b> ejecución diaria automática</span>
+        </div>
+      </article>
+
+      <article class="panel ledger-panel">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">ÚLTIMAS DECISIONES</span>
+            <h2>El registro manda.</h2>
+          </div>
+        </div>
+        <div id="ledger" class="ledger-list"><p class="muted">Todavía no hay decisiones procesadas.</p></div>
+      </article>
+    </section>
+
+    <footer>
+      <span>JeremyE7 / cryptobot</span>
+      <span>paper only · not financial advice</span>
+      <span id="startedAt">inicio: —</span>
+    </footer>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
