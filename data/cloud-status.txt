@@ -1,0 +1,23 @@
+
+=== CRYPTO BOT — FORWARD PAPER STATUS ===
+Strategy       : dual_regime_deadband_allocator 6.0-frozen (FROZEN)
+Started        : 2026-09-07 19:00 UTC
+First eligible : 2026-09-08 00:00 UTC
+Last processed : -
+Market mark    : 2026-09-07 18:59 UTC
+Initial        : $10.0000
+Equity         : $10.0000
+Return         : +0.00%
+Max DD         : 0.00%
+Cash           : $10.0000
+Invested       : $0.0000 (0.00%)
+Regime         : - (raw=-)
+Trades         : 0 legs across 0 processed day(s)
+Costs          : $0.0000 (fees $0.0000 + slip $0.0000)
+Turnover       : $0.0000
+
+Positions:
+  CASH
+
+Integrity:
+  PASS SQLite + ledger/account totals consistent
