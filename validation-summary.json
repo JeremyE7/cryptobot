@@ -1,0 +1,292 @@
+{
+  "version": "6.0.0",
+  "selected_rules": {
+    "top_k": 2,
+    "recovery_top_k": 1,
+    "bull_exposure": 1.0,
+    "recovery_exposure": 0.5,
+    "neutral_exposure": 0.0,
+    "bear_exposure": 0.0,
+    "rebalance_weekday": 0,
+    "rebalance_band": 0.1,
+    "min_order_notional": 4.9,
+    "emergency_bear_exit": true,
+    "rebalance_on_regime_change": true,
+    "recovery_confirm_days": 1,
+    "neutral_confirm_days": 2,
+    "strong_bull_confirm_days": 1,
+    "recovery_reentry_lockout_days": 0,
+    "fast_entry_gap_pct": 0.1,
+    "fast_exit_gap_pct": -0.1,
+    "slow_bull_mixed_to_recovery": true
+  },
+  "market_data": [
+    {
+      "symbol": "BNBUSDT",
+      "candles": 70080,
+      "min_open_time": 1725716700000,
+      "max_open_time": 1788787800000
+    },
+    {
+      "symbol": "BTCUSDT",
+      "candles": 70080,
+      "min_open_time": 1725716700000,
+      "max_open_time": 1788787800000
+    },
+    {
+      "symbol": "ETHUSDT",
+      "candles": 70080,
+      "min_open_time": 1725716700000,
+      "max_open_time": 1788787800000
+    },
+    {
+      "symbol": "LINKUSDT",
+      "candles": 70080,
+      "min_open_time": 1725716700000,
+      "max_open_time": 1788787800000
+    }
+  ],
+  "selected": {
+    "return_pct": 27.518607761442524,
+    "annualized_return_pct": 19.89535346182254,
+    "max_drawdown_pct": -11.381705086950022,
+    "calmar_ratio": 1.7480116827692236,
+    "daily_profit_factor": 1.242946100607064,
+    "average_exposure_pct": 18.494419345650826,
+    "trade_legs": 65,
+    "total_costs": 0.5562707542154096,
+    "compounded_fold_return_pct": 33.08495107281446,
+    "profitable_folds": 4,
+    "total_folds": 6,
+    "worst_fold_return_pct": -3.495045256384144,
+    "worst_fold_drawdown_pct": -10.11748970705061,
+    "fold_returns_pct": [
+      7.859668075066462,
+      14.13078379039796,
+      -3.495045256384144,
+      2.3406631245433074,
+      -2.784708623598642,
+      12.599030129298106
+    ]
+  },
+  "benchmarks": [
+    {
+      "name": "CASH",
+      "return_pct": 0.0,
+      "final_value": 10.0,
+      "max_drawdown_pct": 0.0,
+      "annualized_return_pct": 0.0,
+      "calmar_ratio": null
+    },
+    {
+      "name": "BTCUSDT HOLD",
+      "return_pct": -15.191904294227765,
+      "final_value": 8.480809570577224,
+      "max_drawdown_pct": -52.971765913510616,
+      "annualized_return_pct": -11.573163676836916,
+      "calmar_ratio": -0.21847796608731038
+    },
+    {
+      "name": "BNBUSDT HOLD",
+      "return_pct": 26.001907598601083,
+      "final_value": 12.600190759860109,
+      "max_drawdown_pct": -58.19795013002908,
+      "annualized_return_pct": 18.829321477876903,
+      "calmar_ratio": 0.3235392558639504
+    },
+    {
+      "name": "ETHUSDT HOLD",
+      "return_pct": 38.14382015064361,
+      "final_value": 13.81438201506436,
+      "max_drawdown_pct": -67.55345017766712,
+      "annualized_return_pct": 27.275961761256085,
+      "calmar_ratio": 0.40376859641542634
+    },
+    {
+      "name": "LINKUSDT HOLD",
+      "return_pct": -3.0549450549450574,
+      "final_value": 9.694505494505494,
+      "max_drawdown_pct": -73.12056737588652,
+      "annualized_return_pct": -2.2892229854205803,
+      "calmar_ratio": -0.03130751124581007
+    },
+    {
+      "name": "EQUAL-WEIGHT HOLD",
+      "return_pct": 20.36359423143321,
+      "final_value": 12.036359423143322,
+      "max_drawdown_pct": -63.58789835681718,
+      "annualized_return_pct": 14.837383915623835,
+      "calmar_ratio": 0.2333365986144931
+    }
+  ],
+  "stress_tests": {
+    "base": {
+      "return_pct": 27.518607761442524,
+      "annualized_return_pct": 19.89535346182254,
+      "max_drawdown_pct": -11.381705086950022,
+      "calmar_ratio": 1.7480116827692236,
+      "daily_profit_factor": 1.242946100607064,
+      "average_exposure_pct": 18.494419345650826,
+      "trade_legs": 65,
+      "total_costs": 0.5562707542154096,
+      "compounded_fold_return_pct": 33.08495107281446,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -3.495045256384144,
+      "worst_fold_drawdown_pct": -10.11748970705061,
+      "fold_returns_pct": [
+        7.859668075066462,
+        14.13078379039796,
+        -3.495045256384144,
+        2.3406631245433074,
+        -2.784708623598642,
+        12.599030129298106
+      ]
+    },
+    "costs_2x": {
+      "return_pct": 23.85533554964909,
+      "annualized_return_pct": 17.314994151386355,
+      "max_drawdown_pct": -12.396682719026863,
+      "calmar_ratio": 1.3967441567904852,
+      "daily_profit_factor": 1.2075010123527867,
+      "average_exposure_pct": 18.92545396602625,
+      "trade_legs": 64,
+      "total_costs": 1.1010157628676946,
+      "compounded_fold_return_pct": 29.520926221435673,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -3.787029294514155,
+      "worst_fold_drawdown_pct": -10.281856285366375,
+      "fold_returns_pct": [
+        7.656531873477523,
+        12.287473140797234,
+        -3.787029294514155,
+        2.1110020028832777,
+        -3.0791762644631016,
+        12.523955129298091
+      ]
+    },
+    "costs_3x": {
+      "return_pct": 19.9511568529664,
+      "annualized_return_pct": 14.54353839352338,
+      "max_drawdown_pct": -13.445318167597897,
+      "calmar_ratio": 1.0816804937031617,
+      "daily_profit_factor": 1.1753442349031966,
+      "average_exposure_pct": 18.49314796923201,
+      "trade_legs": 56,
+      "total_costs": 1.4499393249683512,
+      "compounded_fold_return_pct": 25.688969299662602,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -4.0787956194713875,
+      "worst_fold_drawdown_pct": -10.490584705887262,
+      "fold_returns_pct": [
+        7.146393794169081,
+        10.473482319701223,
+        -4.0787956194713875,
+        1.881520285508942,
+        -3.3734261740905658,
+        12.448830129298072
+      ]
+    }
+  },
+  "deadband_sensitivity": {
+    "0.08": {
+      "return_pct": 23.465814334440793,
+      "annualized_return_pct": 17.039490542264947,
+      "max_drawdown_pct": -14.198169675456175,
+      "calmar_ratio": 1.2001188133228506,
+      "daily_profit_factor": 1.2192278337574292,
+      "average_exposure_pct": 18.16618177170277,
+      "trade_legs": 65,
+      "total_costs": 0.5520777090084797,
+      "compounded_fold_return_pct": 28.85524825211099,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -3.495045256384144,
+      "worst_fold_drawdown_pct": -10.11748970705061,
+      "fold_returns_pct": [
+        7.859668075066462,
+        10.50348187357024,
+        -3.495045256384144,
+        2.3406631245433074,
+        -2.784708623598642,
+        12.599030129298106
+      ]
+    },
+    "0.10": {
+      "return_pct": 27.518607761442524,
+      "annualized_return_pct": 19.89535346182254,
+      "max_drawdown_pct": -11.381705086950022,
+      "calmar_ratio": 1.7480116827692236,
+      "daily_profit_factor": 1.242946100607064,
+      "average_exposure_pct": 18.494419345650826,
+      "trade_legs": 65,
+      "total_costs": 0.5562707542154096,
+      "compounded_fold_return_pct": 33.08495107281446,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -3.495045256384144,
+      "worst_fold_drawdown_pct": -10.11748970705061,
+      "fold_returns_pct": [
+        7.859668075066462,
+        14.13078379039796,
+        -3.495045256384144,
+        2.3406631245433074,
+        -2.784708623598642,
+        12.599030129298106
+      ]
+    },
+    "0.12": {
+      "return_pct": 24.01887184374609,
+      "annualized_return_pct": 17.430595869550558,
+      "max_drawdown_pct": -12.519545979592783,
+      "calmar_ratio": 1.392270606135632,
+      "daily_profit_factor": 1.2068914877714754,
+      "average_exposure_pct": 19.02940966554032,
+      "trade_legs": 63,
+      "total_costs": 0.5336227562902593,
+      "compounded_fold_return_pct": 29.41935535187341,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -5.1256875960639885,
+      "worst_fold_drawdown_pct": -10.11748970705061,
+      "fold_returns_pct": [
+        6.263876437578664,
+        14.13078379039796,
+        -3.495045256384144,
+        3.508943367752271,
+        -5.1256875960639885,
+        12.599030129298106
+      ]
+    },
+    "0.20": {
+      "return_pct": 25.571914811478248,
+      "annualized_return_pct": 18.526504785534037,
+      "max_drawdown_pct": -12.519545979592738,
+      "calmar_ratio": 1.4798064415221475,
+      "daily_profit_factor": 1.2205630754418022,
+      "average_exposure_pct": 18.93310201718766,
+      "trade_legs": 61,
+      "total_costs": 0.5224500518633433,
+      "compounded_fold_return_pct": 31.040026599156544,
+      "profitable_folds": 4,
+      "total_folds": 6,
+      "worst_fold_return_pct": -5.1256875960639885,
+      "worst_fold_drawdown_pct": -10.11748970705061,
+      "fold_returns_pct": [
+        7.594580092368086,
+        14.13078379039796,
+        -3.495045256384144,
+        3.508943367752271,
+        -5.1256875960639885,
+        12.599030129298106
+      ]
+    }
+  },
+  "notes": [
+    "Selected deadband 0.10 was chosen from development folds before treating the last two 90-day folds as holdout.",
+    "Neighboring deadbands remain profitable; the result is not dependent on a single basis-point threshold.",
+    "This is historical research and paper-forward-test readiness, not proof of future profitability or live-trading approval."
+  ]
+}

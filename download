@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+.env
+
+# Market working data is large and mutable: GitHub Actions cache owns it.
+data/market.db
+data/market.db-*
+data/*.sqlite
+data/*.sqlite3
+
+# Persistent forward-paper state IS versioned in the private repo.
+!data/paper.db
+!data/cloud-status.txt
+!data/market-seed.db.gz
+
+# Local/transient outputs
+*.log
+data/forward-*.log

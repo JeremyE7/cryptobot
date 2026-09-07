@@ -1,0 +1,113 @@
+name: Crypto Paper Forward
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily shortly after the UTC daily candle closes (19:17 Ecuador).
+    # GitHub may start scheduled jobs a few minutes late; the paper engine is idempotent/catch-up safe.
+    - cron: "17 19 * * *"
+      timezone: "America/Guayaquil"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crypto-paper-forward
+  cancel-in-progress: false
+
+jobs:
+  paper-tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout frozen bot
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install bot
+        run: python -m pip install -e .
+
+      - name: Restore rolling market database
+        id: market-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/market.db
+          key: market-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            market-${{ runner.os }}-
+
+      - name: Recover market database from immutable seed if cache is empty
+        shell: bash
+        run: |
+          if [ ! -f data/market.db ]; then
+            echo "No market cache restored; expanding immutable seed."
+            test -f data/market-seed.db.gz
+            gzip -dc data/market-seed.db.gz > data/market.db
+          fi
+
+      - name: Initialize forward account once
+        shell: bash
+        run: |
+          if [ ! -f data/paper.db ]; then
+            crypto-bot paper init --cash 10
+          else
+            echo "Existing persistent paper.db found; preserving forward history."
+          fi
+
+      - name: Validate before processing
+        run: crypto-bot paper doctor
+
+      - name: Process exactly-once paper tick
+        run: crypto-bot paper tick
+
+      - name: Validate after processing
+        run: crypto-bot paper doctor
+
+      - name: Render human-readable status
+        run: crypto-bot paper status | tee data/cloud-status.txt
+
+      - name: Save rolling market cache
+        if: always() && hashFiles('data/market.db') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: data/market.db
+          key: market-${{ runner.os }}-${{ github.run_id }}
+
+      - name: Checkpoint paper SQLite before persistence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import sqlite3
+          with sqlite3.connect('data/paper.db') as conn:
+              conn.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+          PY
+
+      - name: Persist only paper ledger/status in Git
+        shell: bash
+        run: |
+          git config user.name "crypto-bot[bot]"
+          git config user.email "crypto-bot@users.noreply.github.com"
+          git add -f data/paper.db data/cloud-status.txt
+          if git diff --cached --quiet; then
+            echo "No paper state change to commit."
+            exit 0
+          fi
+          git commit -m "paper: forward tick $(date -u +%F)"
+          git push
+
+      - name: Upload status for easy inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-status-${{ github.run_id }}
+          path: data/cloud-status.txt
+          if-no-files-found: ignore
+          retention-days: 30

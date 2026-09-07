@@ -1,0 +1,2909 @@
+{
+  "strategy": "dual_regime_deadband_allocator_v6",
+  "warmup_days": 240,
+  "fold_days": 90,
+  "fee_rate": 0.001,
+  "slippage_rate": 0.0005,
+  "rules": {
+    "top_k": 2,
+    "recovery_top_k": 1,
+    "bull_exposure": 1.0,
+    "recovery_exposure": 0.5,
+    "neutral_exposure": 0.0,
+    "bear_exposure": 0.0,
+    "rebalance_weekday": 0,
+    "rebalance_band": 0.1,
+    "min_order_notional": 4.9,
+    "emergency_bear_exit": true,
+    "rebalance_on_regime_change": true,
+    "recovery_confirm_days": 1,
+    "neutral_confirm_days": 2,
+    "strong_bull_confirm_days": 1,
+    "recovery_reentry_lockout_days": 0,
+    "fast_entry_gap_pct": 0.1,
+    "fast_exit_gap_pct": -0.1,
+    "slow_bull_mixed_to_recovery": true
+  },
+  "full_result": {
+    "initial_cash": 10.0,
+    "final_equity": 12.751860776144252,
+    "return_pct": 27.518607761442524,
+    "annualized_return_pct": 19.89535346182254,
+    "max_drawdown_pct": -11.381705086950022,
+    "annualized_volatility_pct": 23.421902968683085,
+    "calmar_ratio": 1.7480116827692236,
+    "daily_profit_factor": 1.242946100607064,
+    "total_fees": 0.3708478010963999,
+    "total_slippage_cost": 0.18542295311900966,
+    "total_costs": 0.5562707542154096,
+    "total_turnover": 370.84590623805644,
+    "rebalance_events": 57,
+    "regime_change_events": 51,
+    "raw_regime_changes": 193,
+    "stabilized_regime_changes": 146,
+    "filtered_regime_changes": 47,
+    "hysteresis_hold_days": 54,
+    "reentry_blocked_days": 0,
+    "trade_legs": 65,
+    "average_exposure_pct": 18.494419345650826,
+    "effective_start_time": 1746489600000,
+    "effective_end_time": 1788652800000,
+    "regime_days": {
+      "BEAR": 68,
+      "NEUTRAL": 237,
+      "RECOVERY": 140,
+      "STRONG_BULL": 44
+    },
+    "raw_regime_days": {
+      "BEAR": 68,
+      "NEUTRAL": 273,
+      "RECOVERY": 104,
+      "STRONG_BULL": 44
+    }
+  },
+  "raw_control_result": {
+    "initial_cash": 10.0,
+    "final_equity": 12.055521791010065,
+    "return_pct": 20.555217910100644,
+    "annualized_return_pct": 14.97382140098249,
+    "max_drawdown_pct": -11.306572130086112,
+    "annualized_volatility_pct": 17.894307663094544,
+    "calmar_ratio": 1.324346692233807,
+    "daily_profit_factor": 1.3173353631403661,
+    "total_fees": 0.3787044501458436,
+    "total_slippage_cost": 0.18935120340299655,
+    "total_costs": 0.5680556535488401,
+    "total_turnover": 378.70240680603393,
+    "rebalance_events": 40,
+    "regime_change_events": 37,
+    "raw_regime_changes": 176,
+    "stabilized_regime_changes": 144,
+    "filtered_regime_changes": 32,
+    "hysteresis_hold_days": 30,
+    "reentry_blocked_days": 0,
+    "trade_legs": 64,
+    "average_exposure_pct": 12.10067815881005,
+    "effective_start_time": 1746489600000,
+    "effective_end_time": 1788652800000,
+    "regime_days": {
+      "BEAR": 71,
+      "NEUTRAL": 310,
+      "RECOVERY": 63,
+      "STRONG_BULL": 45
+    },
+    "raw_regime_days": {
+      "BEAR": 71,
+      "NEUTRAL": 340,
+      "RECOVERY": 33,
+      "STRONG_BULL": 45
+    }
+  },
+  "full_benchmarks": [
+    {
+      "name": "CASH",
+      "return_pct": 0.0,
+      "final_value": 10.0,
+      "max_drawdown_pct": 0.0,
+      "annualized_return_pct": 0.0,
+      "calmar_ratio": null
+    },
+    {
+      "name": "BTCUSDT HOLD",
+      "return_pct": -15.191904294227765,
+      "final_value": 8.480809570577224,
+      "max_drawdown_pct": -52.971765913510616,
+      "annualized_return_pct": -11.573163676836916,
+      "calmar_ratio": -0.21847796608731038
+    },
+    {
+      "name": "BNBUSDT HOLD",
+      "return_pct": 26.001907598601083,
+      "final_value": 12.600190759860109,
+      "max_drawdown_pct": -58.19795013002908,
+      "annualized_return_pct": 18.829321477876903,
+      "calmar_ratio": 0.3235392558639504
+    },
+    {
+      "name": "ETHUSDT HOLD",
+      "return_pct": 38.14382015064361,
+      "final_value": 13.81438201506436,
+      "max_drawdown_pct": -67.55345017766712,
+      "annualized_return_pct": 27.275961761256085,
+      "calmar_ratio": 0.40376859641542634
+    },
+    {
+      "name": "LINKUSDT HOLD",
+      "return_pct": -3.0549450549450574,
+      "final_value": 9.694505494505494,
+      "max_drawdown_pct": -73.12056737588652,
+      "annualized_return_pct": -2.2892229854205803,
+      "calmar_ratio": -0.03130751124581007
+    },
+    {
+      "name": "EQUAL-WEIGHT HOLD",
+      "return_pct": 20.36359423143321,
+      "final_value": 12.036359423143322,
+      "max_drawdown_pct": -63.58789835681718,
+      "annualized_return_pct": 14.837383915623835,
+      "calmar_ratio": 0.2333365986144931
+    }
+  ],
+  "walk_forward": {
+    "profitable_folds": 4,
+    "total_folds": 6,
+    "beat_equal_weight_folds": 4,
+    "mean_return_pct": 5.108398539887174,
+    "median_return_pct": 5.1001655998048845,
+    "compounded_return_pct": 33.08495107281446,
+    "worst_fold_return_pct": -3.495045256384144,
+    "best_fold_return_pct": 14.13078379039796,
+    "worst_drawdown_pct": -10.11748970705061,
+    "mean_rebalance_events": 9,
+    "total_trade_legs": 62,
+    "folds": [
+      {
+        "number": 1,
+        "start_time": 1746489600000,
+        "end_time": 1754265600000,
+        "strategy": {
+          "initial_cash": 10.0,
+          "final_equity": 10.785966807506647,
+          "return_pct": 7.859668075066462,
+          "annualized_return_pct": 35.45573796010528,
+          "max_drawdown_pct": -6.846680873368049,
+          "annualized_volatility_pct": 19.6095699753591,
+          "calmar_ratio": 5.178529365669666,
+          "daily_profit_factor": 1.3815849904705384,
+          "total_fees": 0.16051881415314986,
+          "total_slippage_cost": 0.08025966376288927,
+          "total_costs": 0.24077847791603912,
+          "total_turnover": 160.51932752579256,
+          "rebalance_events": 27,
+          "regime_change_events": 26,
+          "raw_regime_changes": 44,
+          "stabilized_regime_changes": 37,
+          "filtered_regime_changes": 7,
+          "hysteresis_hold_days": 11,
+          "reentry_blocked_days": 0,
+          "trade_legs": 29,
+          "average_exposure_pct": 32.12411667651508,
+          "effective_start_time": 1746489600000,
+          "effective_end_time": 1754265600000,
+          "regime_days": {
+            "NEUTRAL": 12,
+            "RECOVERY": 50,
+            "STRONG_BULL": 29
+          },
+          "raw_regime_days": {
+            "NEUTRAL": 11,
+            "RECOVERY": 51,
+            "STRONG_BULL": 29
+          }
+        },
+        "btc_hold": {
+          "name": "BTCUSDT HOLD",
+          "return_pct": 21.451029876597218,
+          "final_value": 12.14510298765972,
+          "max_drawdown_pct": -9.608508650383051,
+          "annualized_return_pct": 118.03805196882817,
+          "calmar_ratio": 12.28474222835013
+        },
+        "equal_weight": {
+          "name": "EQUAL-WEIGHT HOLD",
+          "return_pct": 52.79798985841613,
+          "final_value": 15.279798985841612,
+          "max_drawdown_pct": -19.43476630217641,
+          "annualized_return_pct": 447.63832613062675,
+          "calmar_ratio": 23.03286384670845
+        }
+      },
+      {
+        "number": 2,
+        "start_time": 1754352000000,
+        "end_time": 1762128000000,
+        "strategy": {
+          "initial_cash": 10.0,
+          "final_equity": 11.413078379039796,
+          "return_pct": 14.13078379039796,
+          "annualized_return_pct": 69.91902175858672,
+          "max_drawdown_pct": -10.11748970705061,
+          "annualized_volatility_pct": 41.9023363268066,
+          "calmar_ratio": 6.910708464557371,
+          "daily_profit_factor": 1.3146213929725363,
+          "total_fees": 0.1175671044600269,
+          "total_slippage_cost": 0.058783949587365686,
+          "total_costs": 0.1763510540473926,
+          "total_turnover": 117.56789917474346,
+          "rebalance_events": 17,
+          "regime_change_events": 14,
+          "raw_regime_changes": 23,
+          "stabilized_regime_changes": 16,
+          "filtered_regime_changes": 7,
+          "hysteresis_hold_days": 9,
+          "reentry_blocked_days": 0,
+          "trade_legs": 21,
+          "average_exposure_pct": 28.61973214331679,
+          "effective_start_time": 1754352000000,
+          "effective_end_time": 1762128000000,
+          "regime_days": {
+            "NEUTRAL": 53,
+            "RECOVERY": 23,
+            "STRONG_BULL": 15
+          },
+          "raw_regime_days": {
+            "NEUTRAL": 56,
+            "RECOVERY": 20,
+            "STRONG_BULL": 15
+          }
+        },
+        "btc_hold": {
+          "name": "BTCUSDT HOLD",
+          "return_pct": -7.363424267500529,
+          "final_value": 9.263657573249947,
+          "max_drawdown_pct": -14.621429065349222,
+          "annualized_return_pct": -26.419125475854198,
+          "calmar_ratio": -1.8068771087816509
+        },
+        "equal_weight": {
+          "name": "EQUAL-WEIGHT HOLD",
+          "return_pct": 5.063771023087549,
+          "final_value": 10.506377102308754,
+          "max_drawdown_pct": -25.64636435236036,
+          "annualized_return_pct": 21.912345289133505,
+          "calmar_ratio": 0.8544035711290519
+        }
+      },
+      {
+        "number": 3,
+        "start_time": 1762214400000,
+        "end_time": 1769990400000,
+        "strategy": {
+          "initial_cash": 10.0,
+          "final_equity": 9.650495474361586,
+          "return_pct": -3.495045256384144,
+          "annualized_return_pct": -13.298090750088388,
+          "max_drawdown_pct": -3.843429587997882,
+          "annualized_volatility_pct": 4.7087021198137675,
+          "calmar_ratio": -3.459954305294201,
+          "daily_profit_factor": 0.14169629535946401,
+          "total_fees": 0.019609741128752654,
+          "total_slippage_cost": 0.009804790541876938,
+          "total_costs": 0.029414531670629594,
+          "total_turnover": 19.60958108375567,
+          "rebalance_events": 3,
+          "regime_change_events": 2,
+          "raw_regime_changes": 25,
+          "stabilized_regime_changes": 22,
+          "filtered_regime_changes": 3,
+          "hysteresis_hold_days": 4,
+          "reentry_blocked_days": 0,
+          "trade_legs": 4,
+          "average_exposure_pct": 3.8272248876936574,
+          "effective_start_time": 1762214400000,
+          "effective_end_time": 1769990400000,
+          "regime_days": {
+            "BEAR": 19,
+            "NEUTRAL": 65,
+            "RECOVERY": 7
+          },
+          "raw_regime_days": {
+            "BEAR": 19,
+            "NEUTRAL": 69,
+            "RECOVERY": 3
+          }
+        },
+        "btc_hold": {
+          "name": "BTCUSDT HOLD",
+          "return_pct": -26.124641769962476,
+          "final_value": 7.387535823003752,
+          "max_drawdown_pct": -27.7856938790924,
+          "annualized_return_pct": -70.31388674350725,
+          "calmar_ratio": -2.5305787593238973
+        },
+        "equal_weight": {
+          "name": "EQUAL-WEIGHT HOLD",
+          "return_pct": -30.883127455676828,
+          "final_value": 6.911687254432318,
+          "max_drawdown_pct": -34.32553586566485,
+          "annualized_return_pct": -77.27135726631276,
+          "calmar_ratio": -2.2511333127826205
+        }
+      },
+      {
+        "number": 4,
+        "start_time": 1770076800000,
+        "end_time": 1777852800000,
+        "strategy": {
+          "initial_cash": 10.0,
+          "final_equity": 10.234066312454331,
+          "return_pct": 2.3406631245433074,
+          "annualized_return_pct": 9.724428333098544,
+          "max_drawdown_pct": -3.6796027957225474,
+          "annualized_volatility_pct": 12.852802464093473,
+          "calmar_ratio": 2.6427929515661215,
+          "daily_profit_factor": 1.2105888167480519,
+          "total_fees": 0.01520966511626744,
+          "total_slippage_cost": 0.007603602360982805,
+          "total_costs": 0.022813267477250244,
+          "total_turnover": 15.20720472196793,
+          "rebalance_events": 3,
+          "regime_change_events": 3,
+          "raw_regime_changes": 43,
+          "stabilized_regime_changes": 31,
+          "filtered_regime_changes": 12,
+          "hysteresis_hold_days": 11,
+          "reentry_blocked_days": 0,
+          "trade_legs": 3,
+          "average_exposure_pct": 12.967647502382802,
+          "effective_start_time": 1770076800000,
+          "effective_end_time": 1777852800000,
+          "regime_days": {
+            "BEAR": 21,
+            "NEUTRAL": 47,
+            "RECOVERY": 23
+          },
+          "raw_regime_days": {
+            "BEAR": 21,
+            "NEUTRAL": 58,
+            "RECOVERY": 12
+          }
+        },
+        "btc_hold": {
+          "name": "BTCUSDT HOLD",
+          "return_pct": 1.425488896170335,
+          "final_value": 10.142548889617034,
+          "max_drawdown_pct": -20.102897435311284,
+          "annualized_return_pct": 5.841500904370522,
+          "calmar_ratio": 0.29058004813324906
+        },
+        "equal_weight": {
+          "name": "EQUAL-WEIGHT HOLD",
+          "return_pct": -8.011338655487865,
+          "final_value": 9.198866134451213,
+          "max_drawdown_pct": -20.916456012797347,
+          "annualized_return_pct": -28.46169081767458,
+          "calmar_ratio": -1.3607319901737092
+        }
+      },
+      {
+        "number": 5,
+        "start_time": 1777939200000,
+        "end_time": 1785715200000,
+        "strategy": {
+          "initial_cash": 10.0,
+          "final_equity": 9.721529137640136,
+          "return_pct": -2.784708623598642,
+          "annualized_return_pct": -10.709851766756284,
+          "max_drawdown_pct": -3.2090008760350286,
+          "annualized_volatility_pct": 6.668906579041514,
+          "calmar_ratio": -3.337441210047017,
+          "daily_profit_factor": 0.5338677903404763,
+          "total_fees": 0.019795160823834326,
+          "total_slippage_cost": 0.009897518217370865,
+          "total_costs": 0.02969267904120519,
+          "total_turnover": 19.795036434742666,
+          "rebalance_events": 3,
+          "regime_change_events": 1,
+          "raw_regime_changes": 41,
+          "stabilized_regime_changes": 35,
+          "filtered_regime_changes": 6,
+          "hysteresis_hold_days": 12,
+          "reentry_blocked_days": 0,
+          "trade_legs": 4,
+          "average_exposure_pct": 5.991461725945332,
+          "effective_start_time": 1777939200000,
+          "effective_end_time": 1785715200000,
+          "regime_days": {
+            "BEAR": 26,
+            "NEUTRAL": 46,
+            "RECOVERY": 19
+          },
+          "raw_regime_days": {
+            "BEAR": 26,
+            "NEUTRAL": 58,
+            "RECOVERY": 7
+          }
+        },
+        "btc_hold": {
+          "name": "BTCUSDT HOLD",
+          "return_pct": -20.461812341216323,
+          "final_value": 7.953818765878368,
+          "max_drawdown_pct": -28.689137474277793,
+          "annualized_return_pct": -60.07819313810246,
+          "calmar_ratio": -2.0941094235394
+        },
+        "equal_weight": {
+          "name": "EQUAL-WEIGHT HOLD",
+          "return_pct": -12.83624244543825,
+          "final_value": 8.716375755456175,
+          "max_drawdown_pct": -28.078921429502923,
+          "annualized_return_pct": -42.364757181759174,
+          "calmar_ratio": -1.508774376826523
+        }
+      },
+      {
+        "number": 6,
+        "start_time": 1785801600000,
+        "end_time": 1788652800000,
+        "strategy": {
+          "initial_cash": 10.0,
+          "final_equity": 11.259903012929811,
+          "return_pct": 12.599030129298106,
+          "annualized_return_pct": 257.4700180198625,
+          "max_drawdown_pct": -3.86575760011878,
+          "annualized_volatility_pct": 31.57554075085807,
+          "calmar_ratio": 66.60273215577496,
+          "daily_profit_factor": 2.3354212959337306,
+          "total_fees": 0.0050025,
+          "total_slippage_cost": 0.0024999999999996674,
+          "total_costs": 0.007502499999999667,
+          "total_turnover": 5.0,
+          "rebalance_events": 1,
+          "regime_change_events": 1,
+          "raw_regime_changes": 17,
+          "stabilized_regime_changes": 5,
+          "filtered_regime_changes": 12,
+          "hysteresis_hold_days": 7,
+          "reentry_blocked_days": 0,
+          "trade_legs": 1,
+          "average_exposure_pct": 27.722911142793784,
+          "effective_start_time": 1785801600000,
+          "effective_end_time": 1788652800000,
+          "regime_days": {
+            "BEAR": 2,
+            "NEUTRAL": 14,
+            "RECOVERY": 18
+          },
+          "raw_regime_days": {
+            "BEAR": 2,
+            "NEUTRAL": 21,
+            "RECOVERY": 11
+          }
+        },
+        "btc_hold": {
+          "name": "BTCUSDT HOLD",
+          "return_pct": 26.482729848866484,
+          "final_value": 12.648272984886649,
+          "max_drawdown_pct": -3.6256513741255714,
+          "annualized_return_pct": 1145.4757227503426,
+          "calmar_ratio": 315.9365323773322
+        },
+        "equal_weight": {
+          "name": "EQUAL-WEIGHT HOLD",
+          "return_pct": 41.511067893461416,
+          "final_value": 14.15110678934614,
+          "max_drawdown_pct": -5.001560545078365,
+          "annualized_return_pct": 4056.993863796302,
+          "calmar_ratio": 811.1456069023226
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "time": 1747008000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.0,
+      "equity_after_trades": 9.9924975,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.11131022477087704,
+          "return_90": 0.05253374282712353,
+          "trend_strength": -0.01779021313116058
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.6048568784503943,
+          "return_90": -0.055095652696725894,
+          "trend_strength": -0.2178206967734132
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.3528481012658229,
+          "return_90": -0.09090909090909072,
+          "trend_strength": -0.08306820321229191
+        }
+      ],
+      "legs": [
+        {
+          "time": 1747008000000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 651.15,
+          "execution_price": 651.4755749999999,
+          "market_notional": 5.0,
+          "fee": 0.0050025,
+          "slippage_cost": 0.0024999999999996774
+        }
+      ]
+    },
+    {
+      "time": 1747180800000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 10.092090527720188,
+      "equity_after_trades": 10.08444368797512,
+      "ranked": [],
+      "legs": [
+        {
+          "time": 1747180800000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 664.12,
+          "execution_price": 663.78794,
+          "market_notional": 5.0995930277201875,
+          "fee": 0.005097043231206327,
+          "slippage_cost": 0.0025497965138597547
+        }
+      ]
+    },
+    {
+      "time": 1747267200000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.08444368797512,
+      "equity_after_trades": 10.076877834098216,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.11621103773907704,
+          "return_90": -0.018428812131423777,
+          "trend_strength": -0.010492497131921796
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.6072103807805291,
+          "return_90": -0.024713457679184758,
+          "trend_strength": -0.188764691221047
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.3467933491686461,
+          "return_90": -0.08351293103448265,
+          "trend_strength": -0.06723251255778129
+        }
+      ],
+      "legs": [
+        {
+          "time": 1747267200000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 652.47,
+          "execution_price": 652.796235,
+          "market_notional": 5.04222184398756,
+          "fee": 0.005044742954909555,
+          "slippage_cost": 0.0025211109219937565
+        }
+      ]
+    },
+    {
+      "time": 1747353600000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 10.072318374064878,
+      "equity_after_trades": 10.06476439932014,
+      "ranked": [],
+      "legs": [
+        {
+          "time": 1747353600000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 651.88,
+          "execution_price": 651.55406,
+          "market_notional": 5.037662383954221,
+          "fee": 0.005035143552762245,
+          "slippage_cost": 0.002518831191976693
+        }
+      ]
+    },
+    {
+      "time": 1747440000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.06476439932014,
+      "equity_after_trades": 10.05721330982955,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.10974605353466038,
+          "return_90": -0.023330967517856904,
+          "trend_strength": -0.0070674674561318485
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.6086840737030319,
+          "return_90": -0.05789739476576661,
+          "trend_strength": -0.17265850826565443
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.27611336032388656,
+          "return_90": -0.17008952080042117,
+          "trend_strength": -0.06204611199521415
+        }
+      ],
+      "legs": [
+        {
+          "time": 1747440000000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 646.76,
+          "execution_price": 647.0833799999999,
+          "market_notional": 5.03238219966007,
+          "fee": 0.0050348983907599,
+          "slippage_cost": 0.0025161910998294837
+        }
+      ]
+    },
+    {
+      "time": 1747526400000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 10.000723893709921,
+      "equity_after_trades": 9.993262542481002,
+      "ranked": [],
+      "legs": [
+        {
+          "time": 1747526400000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 639.5,
+          "execution_price": 639.18025,
+          "market_notional": 4.97589278354044,
+          "fee": 0.00497340483714867,
+          "slippage_cost": 0.0024879463917702126
+        }
+      ]
+    },
+    {
+      "time": 1748044800000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 9.993262542481002,
+      "equity_after_trades": 9.985765097258506,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.08464446682405757,
+          "return_90": -0.01733550712715204,
+          "trend_strength": 0.005398823454154433
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.4074660041112603,
+          "return_90": -0.08566816974399427,
+          "trend_strength": -0.1257911707305729
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.03395472703062574,
+          "return_90": -0.1255630630630632,
+          "trend_strength": -0.04697934754215016
+        }
+      ],
+      "legs": [
+        {
+          "time": 1748044800000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 656.99,
+          "execution_price": 657.318495,
+          "market_notional": 4.996631271240501,
+          "fee": 0.004999129586876121,
+          "slippage_cost": 0.0024983156356200627
+        }
+      ]
+    },
+    {
+      "time": 1748217600000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 10.080527613643316,
+      "equity_after_trades": 10.073052634543517,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.11590071844109961,
+          "return_90": 0.08993813090198644,
+          "trend_strength": 0.009072474591140134
+        }
+      ],
+      "legs": [
+        {
+          "time": 1748217600000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 669.45,
+          "execution_price": 669.784725,
+          "market_notional": 4.981658846918204,
+          "fee": 0.0049841496763416634,
+          "slippage_cost": 0.0024908294234586175
+        }
+      ]
+    },
+    {
+      "time": 1748304000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.146029414403902,
+      "equity_after_trades": 10.138422428850452,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.110435913904122,
+          "return_90": 0.08147684806492483,
+          "trend_strength": 0.011025802613740865
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.4079456087166642,
+          "return_90": 0.02724686460712422,
+          "trend_strength": -0.10925766076938326
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.04576043068640634,
+          "return_90": 0.015022860875244959,
+          "trend_strength": -0.043876322502383935
+        }
+      ],
+      "legs": [
+        {
+          "time": 1748304000000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 674.3,
+          "execution_price": 673.96285,
+          "market_notional": 5.073014707201951,
+          "fee": 0.00507047819984835,
+          "slippage_cost": 0.00253650735360061
+        }
+      ]
+    },
+    {
+      "time": 1748822400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "RECOVERY",
+      "trigger": "WEEKLY",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.036631106014262,
+      "equity_after_trades": 10.02164677406212,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.3783573987623494,
+          "return_90": 0.18157197965574845,
+          "trend_strength": -0.07914936110603277
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.10001831227421776,
+          "return_90": 0.14697101197708728,
+          "trend_strength": 0.019556884645564043
+        }
+      ],
+      "legs": [
+        {
+          "time": 1748822400000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 660.77,
+          "execution_price": 660.439615,
+          "market_notional": 4.971223384365762,
+          "fee": 0.00496873777267358,
+          "slippage_cost": 0.0024856116921827182
+        },
+        {
+          "time": 1748822400000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 2539.2,
+          "execution_price": 2540.4696,
+          "market_notional": 5.018315553007131,
+          "fee": 0.005020824710783635,
+          "slippage_cost": 0.002509157776503728
+        }
+      ]
+    },
+    {
+      "time": 1749168000000,
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 9.774248876722238,
+      "equity_after_trades": 9.767094885697563,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.05103141543721068,
+          "return_90": 0.06481497049279561,
+          "trend_strength": 0.021383241703613276
+        }
+      ],
+      "legs": [
+        {
+          "time": 1749168000000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 2414.02,
+          "execution_price": 2412.81299,
+          "market_notional": 4.770917655667248,
+          "fee": 0.004768532196839414,
+          "slippage_cost": 0.0023854588278337864
+        }
+      ]
+    },
+    {
+      "time": 1749513600000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 9.767094885697563,
+      "equity_after_trades": 9.75246131749067,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.002530501581563538,
+          "return_90": 0.20661336814053421,
+          "trend_strength": 0.022369257617005145
+        }
+      ],
+      "legs": [
+        {
+          "time": 1749513600000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 665.58,
+          "execution_price": 665.91279,
+          "market_notional": 9.75246131749067,
+          "fee": 0.009757337548149416,
+          "slippage_cost": 0.004876230658744335
+        }
+      ]
+    },
+    {
+      "time": 1749686400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 9.779422056731907,
+      "equity_after_trades": 9.764757813357837,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.11065650959538709,
+          "return_90": 0.48644474120316006,
+          "trend_strength": -0.04165112496840562
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.011150332540488028,
+          "return_90": 0.15113832355984824,
+          "trend_strength": 0.024283570746220784
+        }
+      ],
+      "legs": [
+        {
+          "time": 1749686400000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 667.42,
+          "execution_price": 667.08629,
+          "market_notional": 9.779422056731907,
+          "fee": 0.009774532345703541,
+          "slippage_cost": 0.004889711028365901
+        }
+      ]
+    },
+    {
+      "time": 1751760000000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 9.764757813357837,
+      "equity_after_trades": 9.750127746673954,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.03606391713509738,
+          "return_90": 0.1811210713899989,
+          "trend_strength": 0.02066925112913065
+        }
+      ],
+      "legs": [
+        {
+          "time": 1751760000000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 656.17,
+          "execution_price": 656.498085,
+          "market_notional": 9.750127746673954,
+          "fee": 0.009755002810547291,
+          "slippage_cost": 0.004875063873336788
+        }
+      ]
+    },
+    {
+      "time": 1751932800000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 9.822788984891542,
+      "equity_after_trades": 9.81542434885012,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.015733997111336384,
+          "return_90": 0.19385248862240823,
+          "trend_strength": 0.021557097342861375
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.006995084428213172,
+          "return_90": 0.7254464134219258,
+          "trend_strength": -0.017372423078037214
+        }
+      ],
+      "legs": [
+        {
+          "time": 1751932800000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 661.06,
+          "execution_price": 660.72947,
+          "market_notional": 4.911394492445771,
+          "fee": 0.004908938795199548,
+          "slippage_cost": 0.002455697246222539
+        }
+      ]
+    },
+    {
+      "time": 1752278400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.030287642229741,
+      "equity_after_trades": 10.015075595376317,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.0673290975281513,
+          "return_90": 0.7992068994878905,
+          "trend_strength": -0.0002964920073129651
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 50.0,
+          "return_30": 0.03380129751434624,
+          "return_90": 0.15520099114333075,
+          "trend_strength": 0.02550176420261896
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.026192075218267163,
+          "return_90": 0.16197718631178692,
+          "trend_strength": -0.07825833070999122
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752278400000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 689.98,
+          "execution_price": 689.6350100000001,
+          "market_notional": 5.126257785825393,
+          "fee": 0.0051236946569324805,
+          "slippage_cost": 0.002563128892912242
+        },
+        {
+          "time": 1752278400000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 2958.21,
+          "execution_price": 2959.689105,
+          "market_notional": 5.0151438211148704,
+          "fee": 0.005017651393025427,
+          "slippage_cost": 0.0025075719105572495
+        }
+      ]
+    },
+    {
+      "time": 1752451200000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 10.03850506373989,
+      "equity_after_trades": 10.031013906593909,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.15231138458198124,
+          "return_90": 0.8303269551722228,
+          "trend_strength": 0.009869819335414531
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.05592431525139241,
+          "return_90": 0.18383686317446202,
+          "trend_strength": 0.028203080010442694
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752451200000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 692.01,
+          "execution_price": 692.356005,
+          "market_notional": 4.992440617115464,
+          "fee": 0.004994936837424022,
+          "slippage_cost": 0.002496220308557667
+        }
+      ]
+    },
+    {
+      "time": 1752537600000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.080728264065307,
+      "equity_after_trades": 10.073273255202128,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.19079644059491985,
+          "return_90": 0.8968139075265298,
+          "trend_strength": 0.015195209029120527
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 50.0,
+          "return_30": 0.19771863117870714,
+          "return_90": 0.2867647058823528,
+          "trend_strength": -0.06683086817851669
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.06739362773191249,
+          "return_90": 0.1891220320265048,
+          "trend_strength": 0.029440415640679563
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752537600000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 689.13,
+          "execution_price": 688.785435,
+          "market_notional": 4.97166312982873,
+          "fee": 0.0049691772982638155,
+          "slippage_cost": 0.0024858315649142833
+        }
+      ]
+    },
+    {
+      "time": 1752624000000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 10.283985890723734,
+      "equity_after_trades": 10.276548256608216,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.23169951444687364,
+          "return_90": 0.9896077710285704,
+          "trend_strength": 0.021661576680058747
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.06437927150989653,
+          "return_90": 0.18380233356211395,
+          "trend_strength": 0.03063940169623902
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752624000000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 689.93,
+          "execution_price": 690.274965,
+          "market_notional": 4.956770486850034,
+          "fee": 0.0049592488720934585,
+          "slippage_cost": 0.002478385243425031
+        }
+      ]
+    },
+    {
+      "time": 1752710400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.80652878072538,
+      "equity_after_trades": 10.79889486207644,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.3251276447721654,
+          "return_90": 1.1288882433917227,
+          "trend_strength": 0.030438462873862537
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.22935103244837762,
+          "return_90": 0.3293460925039875,
+          "trend_strength": -0.05659335360986584
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.08892952638534601,
+          "return_90": 0.20003725719317855,
+          "trend_strength": 0.03261153221921442
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752710400000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 708.61,
+          "execution_price": 708.2556950000001,
+          "market_notional": 5.090976091323471,
+          "fee": 0.00508843060327781,
+          "slippage_cost": 0.002545488045661404
+        }
+      ]
+    },
+    {
+      "time": 1752796800000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 10.977803096259358,
+      "equity_after_trades": 10.970186969327722,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.3852347656327817,
+          "return_90": 1.1886377942842756,
+          "trend_strength": 0.03991293392908113
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 0.0,
+          "return_30": 0.11197691643007035,
+          "return_90": 0.21791080089908887,
+          "trend_strength": 0.03501334385077426
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752796800000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 720.64,
+          "execution_price": 721.00032,
+          "market_notional": 5.075726045742895,
+          "fee": 0.005078263908765766,
+          "slippage_cost": 0.002537863022871458
+        }
+      ]
+    },
+    {
+      "time": 1752883200000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.15429029102398,
+      "equity_after_trades": 11.146581228945847,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.40472079207920797,
+          "return_90": 1.1985904405338226,
+          "trend_strength": 0.049626760286128224
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.3600305110602593,
+          "return_90": 0.3778979907264295,
+          "trend_strength": -0.04146475844499775
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.13206259596445236,
+          "return_90": 0.2335355652071045,
+          "trend_strength": 0.03769477607024685
+        }
+      ],
+      "legs": [
+        {
+          "time": 1752883200000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 729.92,
+          "execution_price": 729.55504,
+          "market_notional": 5.141088414893225,
+          "fee": 0.005138517870685779,
+          "slippage_cost": 0.0025705442074465874
+        }
+      ]
+    },
+    {
+      "time": 1753228800000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 11.484443656599726,
+      "equity_after_trades": 11.47675256136922,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.681649234636621,
+          "return_90": 1.0869436846473954,
+          "trend_strength": 0.08993875645883809
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 0.0,
+          "return_30": 0.27747194751627946,
+          "return_90": 0.2987733403774082,
+          "trend_strength": 0.05222046243772427
+        }
+      ],
+      "legs": [
+        {
+          "time": 1753228800000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 786.69,
+          "execution_price": 787.083345,
+          "market_notional": 5.125688257584588,
+          "fee": 0.005128251101713379,
+          "slippage_cost": 0.002562844128791993
+        }
+      ]
+    },
+    {
+      "time": 1753401600000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.306271464634674,
+      "equity_after_trades": 11.298741326759536,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.513994567991995,
+          "return_90": 1.0771825619186375,
+          "trend_strength": 0.1055301566129041
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.19767532205180816,
+          "return_90": 0.2847593805737527,
+          "trend_strength": 0.059288108755563895
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.33457526080476896,
+          "return_90": 0.20040214477211804,
+          "trend_strength": 0.004529956713431815
+        }
+      ],
+      "legs": [
+        {
+          "time": 1753401600000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 770.74,
+          "execution_price": 770.35463,
+          "market_notional": 5.021765838704884,
+          "fee": 0.005019254955785531,
+          "slippage_cost": 0.002510882919352222
+        }
+      ]
+    },
+    {
+      "time": 1753660800000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 11.578742122340422,
+      "equity_after_trades": 11.57122953430967,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.5979481423094541,
+          "return_90": 1.151310087339156,
+          "trend_strength": 0.12876354953611036
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.30708832138266406,
+          "return_90": 0.3923716510492281,
+          "trend_strength": 0.07271903972583171
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.47432950191570855,
+          "return_90": 0.2801064537591482,
+          "trend_strength": 0.0217533873240765
+        }
+      ],
+      "legs": [
+        {
+          "time": 1753660800000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 844.0,
+          "execution_price": 844.4219999999999,
+          "market_notional": 5.0067231127989915,
+          "fee": 0.00500922647435539,
+          "slippage_cost": 0.0025033615563989724
+        }
+      ]
+    },
+    {
+      "time": 1753747200000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.329056438694952,
+      "equity_after_trades": 11.321726139490938,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.5597671229502139,
+          "return_90": 1.1131265261623864,
+          "trend_strength": 0.13568865945773778
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.270536540240518,
+          "return_90": 0.37116472545757073,
+          "trend_strength": 0.0773359810485108
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.3532486930545182,
+          "return_90": 0.24109589041095902,
+          "trend_strength": 0.02587406180514762
+        }
+      ],
+      "legs": [
+        {
+          "time": 1753747200000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 824.07,
+          "execution_price": 823.6579650000001,
+          "market_notional": 4.8884956345548165,
+          "fee": 0.004886051386737539,
+          "slippage_cost": 0.002444247817277089
+        }
+      ]
+    },
+    {
+      "time": 1754092800000,
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 10.794834354200411,
+      "equity_after_trades": 10.785966807506647,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.3570597686750363,
+          "return_90": 0.9024608403508005,
+          "trend_strength": 0.15484706379844182
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.14759515544709045,
+          "return_90": 0.263147357180993,
+          "trend_strength": 0.0866522311797624
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.18510324483775809,
+          "return_90": 0.1285112359550562,
+          "trend_strength": 0.033128814025301434
+        }
+      ],
+      "legs": [
+        {
+          "time": 1754092800000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 3488.21,
+          "execution_price": 3486.4658950000003,
+          "market_notional": 5.913669018849609,
+          "fee": 0.005910712184340184,
+          "slippage_cost": 0.0029568345094244026
+        }
+      ]
+    },
+    {
+      "time": 1754697600000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.785966807506647,
+      "equity_after_trades": 10.777874635909313,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.4481316411075076,
+          "return_90": 0.5521266011930799,
+          "trend_strength": 0.177764670421948
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.18666626787102958,
+          "return_90": 0.19521012200632626,
+          "trend_strength": 0.0934465050137121
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.39578947368421047,
+          "return_90": 0.1470588235294119,
+          "trend_strength": 0.04488708338624159
+        }
+      ],
+      "legs": [
+        {
+          "time": 1754697600000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 4009.51,
+          "execution_price": 4011.514755,
+          "market_notional": 5.392983403753323,
+          "fee": 0.0053956798954552,
+          "slippage_cost": 0.00269649170187657
+        }
+      ]
+    },
+    {
+      "time": 1754870400000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "LINKUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 11.102125357105374,
+      "equity_after_trades": 11.094057433730548,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.4368674405554691,
+          "return_90": 0.7033144057031342,
+          "trend_strength": 0.19247301871832412
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 50.0,
+          "return_30": 0.4437172774869109,
+          "return_90": 0.3178016726403823,
+          "trend_strength": 0.06398407694000685
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.1699010130581602,
+          "return_90": 0.22293090126804738,
+          "trend_strength": 0.09752412202730465
+        }
+      ],
+      "legs": [
+        {
+          "time": 1754870400000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 22.07,
+          "execution_price": 22.081035,
+          "market_notional": 5.376823308781165,
+          "fee": 0.005379511720435556,
+          "slippage_cost": 0.0026884116543905053
+        }
+      ]
+    },
+    {
+      "time": 1754956800000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.813631034253424,
+      "equity_after_trades": 10.805933804718288,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.43486858199016054,
+          "return_90": 0.5759988954028608,
+          "trend_strength": 0.19870870680998465
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.17384014230309397,
+          "return_90": 0.21224760212608973,
+          "trend_strength": 0.09941881115502493
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.3944407677035078,
+          "return_90": 0.2116158711903393,
+          "trend_strength": 0.07100805223223494
+        }
+      ],
+      "legs": [
+        {
+          "time": 1754956800000,
+          "side": "SELL",
+          "symbol": "LINKUSDT",
+          "market_price": 21.07,
+          "execution_price": 21.059465000000003,
+          "market_notional": 5.133197422565435,
+          "fee": 0.005130630823854153,
+          "slippage_cost": 0.0025665987112820587
+        }
+      ]
+    },
+    {
+      "time": 1755043200000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT",
+        "LINKUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 11.299969934868505,
+      "equity_after_trades": 11.292290644603906,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.5445739107613314,
+          "return_90": 0.7589951489420406,
+          "trend_strength": 0.2079906996389722
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.5070242656449553,
+          "return_90": 0.38741916519694297,
+          "trend_strength": 0.08213512833395908
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.20299132947976872,
+          "return_90": 0.27587475286220053,
+          "trend_strength": 0.10231779045159284
+        }
+      ],
+      "legs": [
+        {
+          "time": 1755043200000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 23.6,
+          "execution_price": 23.6118,
+          "market_notional": 5.1178209027657,
+          "fee": 0.005120379813217082,
+          "slippage_cost": 0.002558910451382279
+        }
+      ]
+    },
+    {
+      "time": 1755216000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.984153607392738,
+      "equity_after_trades": 10.976853388267273,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.4490119156503256,
+          "return_90": 0.7921265056441951,
+          "trend_strength": 0.2255230796029819
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.3941651148355061,
+          "return_90": 0.42512690355329963,
+          "trend_strength": 0.10098083609654651
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 16.666666666666668,
+          "return_30": 0.21814123376623384,
+          "return_90": 0.29943100995732563,
+          "trend_strength": 0.10846117383737464
+        }
+      ],
+      "legs": [
+        {
+          "time": 1755216000000,
+          "side": "SELL",
+          "symbol": "LINKUSDT",
+          "market_price": 22.45,
+          "execution_price": 22.438775,
+          "market_notional": 4.868435562164828,
+          "fee": 0.004866001344383746,
+          "slippage_cost": 0.0024342177810823267
+        }
+      ]
+    },
+    {
+      "time": 1755907200000,
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 11.3605014291133,
+      "equity_after_trades": 11.350755629667233,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.33177612594362627,
+          "return_90": 0.9096071767309515,
+          "trend_strength": 0.2575355676096216
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.4735973597359735,
+          "return_90": 0.7464146023468057,
+          "trend_strength": 0.17349299923097483
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 0.0,
+          "return_30": 0.1589592399000952,
+          "return_90": 0.34759958683253256,
+          "trend_strength": 0.1275023259106678
+        }
+      ],
+      "legs": [
+        {
+          "time": 1755907200000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 4832.07,
+          "execution_price": 4829.653965,
+          "market_notional": 6.499366086073938,
+          "fee": 0.006496116403030903,
+          "slippage_cost": 0.0032496830430360055
+        }
+      ]
+    },
+    {
+      "time": 1757721600000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "LINKUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 11.350755629667233,
+      "equity_after_trades": 11.33374933878439,
+      "ranked": [
+        {
+          "symbol": "LINKUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.04795663052543775,
+          "return_90": 0.9110266159695817,
+          "trend_strength": 0.2126612756409283
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.0905531774389452,
+          "return_90": 0.4324437353820416,
+          "trend_strength": 0.14831537801019512
+        }
+      ],
+      "legs": [
+        {
+          "time": 1757721600000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 25.12,
+          "execution_price": 25.132559999999998,
+          "market_notional": 5.675377814833617,
+          "fee": 0.005678215503741033,
+          "slippage_cost": 0.0028376889074161345
+        },
+        {
+          "time": 1757721600000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 924.81,
+          "execution_price": 925.2724049999999,
+          "market_notional": 5.658371523950772,
+          "fee": 0.0056612007097127486,
+          "slippage_cost": 0.0028291857619753237
+        }
+      ]
+    },
+    {
+      "time": 1757808000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "LINKUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.333796326333177,
+      "equity_after_trades": 11.325230219854483,
+      "ranked": [
+        {
+          "symbol": "LINKUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.10774710596616188,
+          "return_90": 0.8706766917293232,
+          "trend_strength": 0.21459899984780462
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.02632377651291873,
+          "return_90": 0.8317285612790024,
+          "trend_strength": 0.2683161377021852
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.11096832536112888,
+          "return_90": 0.4404418457551025,
+          "trend_strength": 0.150568024338396
+        }
+      ],
+      "legs": [
+        {
+          "time": 1757808000000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 933.68,
+          "execution_price": 933.21316,
+          "market_notional": 5.712641866418354,
+          "fee": 0.005709785545485145,
+          "slippage_cost": 0.0028563209332087714
+        }
+      ]
+    },
+    {
+      "time": 1757894400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "RECOVERY",
+      "trigger": "WEEKLY",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.149004316368408,
+      "equity_after_trades": 11.132475105509688,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.0371711037578808,
+          "return_90": 0.809820098499707,
+          "trend_strength": 0.2685710282893392
+        },
+        {
+          "symbol": "LINKUSDT",
+          "score": 50.0,
+          "return_30": 0.10707720588235281,
+          "return_90": 0.7765486725663715,
+          "trend_strength": 0.2151351840158955
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.11923025815102495,
+          "return_90": 0.42377908227556316,
+          "trend_strength": 0.15234969788737485
+        }
+      ],
+      "legs": [
+        {
+          "time": 1757894400000,
+          "side": "SELL",
+          "symbol": "LINKUSDT",
+          "market_price": 24.1,
+          "execution_price": 24.087950000000003,
+          "market_notional": 5.444928556428748,
+          "fee": 0.005442206092150534,
+          "slippage_cost": 0.002722464278214049
+        },
+        {
+          "time": 1757894400000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 4604.48,
+          "execution_price": 4606.78224,
+          "market_notional": 5.574502158184204,
+          "fee": 0.005577289409263297,
+          "slippage_cost": 0.0027872510790920824
+        }
+      ]
+    },
+    {
+      "time": 1757980800000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "LINKUSDT",
+        "ETHUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 11.034725673597332,
+      "equity_after_trades": 11.026446870660717,
+      "ranked": [
+        {
+          "symbol": "LINKUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.0406360424028267,
+          "return_90": 0.8137028483448805,
+          "trend_strength": 0.2147423013692793
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.0230100022840396,
+          "return_90": 0.8023227554333752,
+          "trend_strength": 0.26801517290910937
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.09654111671495502,
+          "return_90": 0.41908406369583995,
+          "trend_strength": 0.15370005098657957
+        }
+      ],
+      "legs": [
+        {
+          "time": 1757980800000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 23.56,
+          "execution_price": 23.571779999999997,
+          "market_notional": 5.517362836798666,
+          "fee": 0.005520121518217065,
+          "slippage_cost": 0.002758681418398894
+        }
+      ]
+    },
+    {
+      "time": 1758326400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.940943785236623,
+      "equity_after_trades": 10.932698592313347,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.03054084720121031,
+          "return_90": 0.9464788977797913,
+          "trend_strength": 0.265110253819661
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.13238593866866122,
+          "return_90": 0.5646215240790498,
+          "trend_strength": 0.16580836605517013
+        }
+      ],
+      "legs": [
+        {
+          "time": 1758326400000,
+          "side": "SELL",
+          "symbol": "LINKUSDT",
+          "market_price": 23.48,
+          "execution_price": 23.46826,
+          "market_notional": 5.498628158235682,
+          "fee": 0.005495878844156565,
+          "slippage_cost": 0.0027493140791177567
+        }
+      ]
+    },
+    {
+      "time": 1758499200000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "RECOVERY",
+      "trigger": "WEEKLY",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 10.90411469229538,
+      "equity_after_trades": 10.887864470318604,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.16395063374101593,
+          "return_90": 0.6359349872753672,
+          "trend_strength": 0.17530284340110147
+        }
+      ],
+      "legs": [
+        {
+          "time": 1758499200000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 4444.98,
+          "execution_price": 4442.7575099999995,
+          "market_notional": 5.3814004193927705,
+          "fee": 0.005378709719183074,
+          "slippage_cost": 0.0026907002096965152
+        },
+        {
+          "time": 1758499200000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 1047.8,
+          "execution_price": 1048.3238999999999,
+          "market_notional": 5.45205734614769,
+          "fee": 0.005454783374820764,
+          "slippage_cost": 0.0027260286730733893
+        }
+      ]
+    },
+    {
+      "time": 1758672000000,
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 10.722294261543631,
+      "equity_after_trades": 10.71436717408114,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.15911969059109432,
+          "return_90": 0.5725540576098564,
+          "trend_strength": 0.18045717629061286
+        }
+      ],
+      "legs": [
+        {
+          "time": 1758672000000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 1015.98,
+          "execution_price": 1015.4720100000001,
+          "market_notional": 5.286487137372715,
+          "fee": 0.005283843893804029,
+          "slippage_cost": 0.002643243568686096
+        }
+      ]
+    },
+    {
+      "time": 1759363200000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 10.71436717408114,
+      "equity_after_trades": 10.698314353393874,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.21381610065272927,
+          "return_90": 0.5468888922376769,
+          "trend_strength": 0.19072649322456048
+        }
+      ],
+      "legs": [
+        {
+          "time": 1759363200000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 1026.5,
+          "execution_price": 1027.01325,
+          "market_notional": 10.698314353393874,
+          "fee": 0.01070366351057057,
+          "slippage_cost": 0.005349157176696633
+        }
+      ]
+    },
+    {
+      "time": 1759708800000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "WEEKLY",
+      "selected": [
+        "ETHUSDT",
+        "BNBUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 12.166583740735453,
+      "equity_after_trades": 12.148361208034668,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.04802609432494864,
+          "return_90": 0.7756904208410527,
+          "trend_strength": 0.22140849760460068
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.3731620674241891,
+          "return_90": 0.7659213989652984,
+          "trend_strength": 0.2123005870630228
+        }
+      ],
+      "legs": [
+        {
+          "time": 1759708800000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 1167.38,
+          "execution_price": 1166.7963100000002,
+          "market_notional": 6.083291870367726,
+          "fee": 0.006080250224432543,
+          "slippage_cost": 0.0030416459351835148
+        },
+        {
+          "time": 1759708800000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 4514.32,
+          "execution_price": 4516.57716,
+          "market_notional": 6.065069337666942,
+          "fee": 0.006068101872335776,
+          "slippage_cost": 0.0030325346688336225
+        }
+      ]
+    },
+    {
+      "time": 1759881600000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 12.773032369895137,
+      "equity_after_trades": 12.764072011405872,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.4822226009885804,
+          "return_90": 0.9507537237542623,
+          "trend_strength": 0.2282166442297069
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 0.0,
+          "return_30": 0.03286199633550768,
+          "return_90": 0.6063985784147303,
+          "trend_strength": 0.2206668498896196
+        }
+      ],
+      "legs": [
+        {
+          "time": 1759881600000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 4447.7,
+          "execution_price": 4445.47615,
+          "market_notional": 5.975564180904601,
+          "fee": 0.0059725763988141495,
+          "slippage_cost": 0.002987782090451497
+        }
+      ]
+    },
+    {
+      "time": 1759968000000,
+      "regime": "STRONG_BULL",
+      "raw_regime": "STRONG_BULL",
+      "previous_regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT",
+        "ETHUSDT"
+      ],
+      "target_exposure": 1.0,
+      "equity_before": 12.779548871430023,
+      "equity_after_trades": 12.770609396077255,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.4889303935860059,
+          "return_90": 0.9063867016622924,
+          "trend_strength": 0.2366909636253154
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 0.0,
+          "return_30": 0.05093617129972583,
+          "return_90": 0.5334718038552635,
+          "trend_strength": 0.21987484650743605
+        }
+      ],
+      "legs": [
+        {
+          "time": 1759968000000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 4525.72,
+          "execution_price": 4527.98286,
+          "market_notional": 5.957664347062569,
+          "fee": 0.0059606431792361,
+          "slippage_cost": 0.0029788321735310457
+        }
+      ]
+    },
+    {
+      "time": 1760054400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "STRONG_BULL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 12.291869156101688,
+      "equity_after_trades": 12.283246791200721,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.42651788047863093,
+          "return_90": 0.8193741938288959,
+          "trend_strength": 0.24276089135478918
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 0.0,
+          "return_30": 0.013456795565753854,
+          "return_90": 0.47659403289816193,
+          "trend_strength": 0.21780481566211374
+        }
+      ],
+      "legs": [
+        {
+          "time": 1760054400000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 4368.09,
+          "execution_price": 4365.905955,
+          "market_notional": 5.750159987308216,
+          "fee": 0.005747284907314562,
+          "slippage_cost": 0.002875079993654067
+        }
+      ]
+    },
+    {
+      "time": 1760486400000,
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 12.039368996880782,
+      "equity_after_trades": 12.02992539873476,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.30437879785431354,
+          "return_90": 0.7054797420301717,
+          "trend_strength": 0.2598411714146147
+        }
+      ],
+      "legs": [
+        {
+          "time": 1760486400000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 1208.55,
+          "execution_price": 1207.945725,
+          "market_notional": 6.297831374473534,
+          "fee": 0.006294682458786298,
+          "slippage_cost": 0.0031489156872363294
+        }
+      ]
+    },
+    {
+      "time": 1768348800000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 12.02992539873476,
+      "equity_after_trades": 12.02089994720436,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.08562755018769397,
+          "return_90": -0.16554304109032247,
+          "trend_strength": -0.06293907121605014
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.0757577484696843,
+          "return_90": -0.18823812759661773,
+          "trend_strength": 0.01655223498320635
+        }
+      ],
+      "legs": [
+        {
+          "time": 1768348800000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 3325.83,
+          "execution_price": 3327.492915,
+          "market_notional": 6.01496269936738,
+          "fee": 0.006017970180717064,
+          "slippage_cost": 0.0030074813496834807
+        }
+      ]
+    },
+    {
+      "time": 1768780800000,
+      "regime": "RECOVERY",
+      "raw_regime": "NEUTRAL",
+      "previous_regime": "RECOVERY",
+      "trigger": "WEEKLY",
+      "selected": [
+        "BNBUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.945320229898734,
+      "equity_after_trades": 11.927452148614652,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.08916453508064981,
+          "return_90": -0.15241003826611776,
+          "trend_strength": 0.022311974151670633
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.10220842423225385,
+          "return_90": -0.17470509295791625,
+          "trend_strength": -0.052800317248587136
+        }
+      ],
+      "legs": [
+        {
+          "time": 1768780800000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 3284.04,
+          "execution_price": 3282.39798,
+          "market_notional": 5.939382982061756,
+          "fee": 0.005936413290570726,
+          "slippage_cost": 0.002969691491030471
+        },
+        {
+          "time": 1768780800000,
+          "side": "BUY",
+          "symbol": "BNBUSDT",
+          "market_price": 932.51,
+          "execution_price": 932.9762549999999,
+          "market_notional": 5.972660114949367,
+          "fee": 0.0059756464450068415,
+          "slippage_cost": 0.0029863300574742534
+        }
+      ]
+    },
+    {
+      "time": 1768953600000,
+      "regime": "BEAR",
+      "raw_regime": "BEAR",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 11.617965991088886,
+      "equity_after_trades": 11.609474061739729,
+      "ranked": [
+        {
+          "symbol": "BNBUSDT",
+          "score": 100.0,
+          "return_30": 0.029768005217553517,
+          "return_90": -0.1750480491127241,
+          "trend_strength": 0.021872524718521857
+        }
+      ],
+      "legs": [
+        {
+          "time": 1768953600000,
+          "side": "SELL",
+          "symbol": "BNBUSDT",
+          "market_price": 884.19,
+          "execution_price": 883.7479050000001,
+          "market_notional": 5.6631739574236,
+          "fee": 0.005660342370444888,
+          "slippage_cost": 0.0028315869787117667
+        }
+      ]
+    },
+    {
+      "time": 1775779200000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.609474061739729,
+      "equity_after_trades": 11.600764053824909,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.07546734364181851,
+          "return_90": -0.2908302033415362,
+          "trend_strength": -0.19885226045921733
+        }
+      ],
+      "legs": [
+        {
+          "time": 1775779200000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 2190.17,
+          "execution_price": 2191.265085,
+          "market_notional": 5.804737030869864,
+          "fee": 0.005807639399385299,
+          "slippage_cost": 0.0029023685154347368
+        }
+      ]
+    },
+    {
+      "time": 1777507200000,
+      "regime": "BEAR",
+      "raw_regime": "BEAR",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 11.767021081337141,
+      "equity_after_trades": 11.758067575746598,
+      "ranked": [],
+      "legs": [
+        {
+          "time": 1777507200000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 2252.9,
+          "execution_price": 2251.7735500000003,
+          "market_notional": 5.970994058382097,
+          "fee": 0.005968008561352906,
+          "slippage_cost": 0.002985497029190385
+        }
+      ]
+    },
+    {
+      "time": 1777680000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "ETHUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.758067575746598,
+      "equity_after_trades": 11.749246085547895,
+      "ranked": [
+        {
+          "symbol": "ETHUSDT",
+          "score": 100.0,
+          "return_30": 0.07254888219216493,
+          "return_90": -0.06375333917902071,
+          "trend_strength": -0.14036527734292226
+        }
+      ],
+      "legs": [
+        {
+          "time": 1777680000000,
+          "side": "BUY",
+          "symbol": "ETHUSDT",
+          "market_price": 2295.63,
+          "execution_price": 2296.777815,
+          "market_notional": 5.879033787873299,
+          "fee": 0.005881973304767235,
+          "slippage_cost": 0.0029395168939361613
+        }
+      ]
+    },
+    {
+      "time": 1778457600000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "RECOVERY",
+      "trigger": "WEEKLY",
+      "selected": [
+        "LINKUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.94293205644776,
+      "equity_after_trades": 11.924865828394129,
+      "ranked": [
+        {
+          "symbol": "LINKUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.17931793179317945,
+          "return_90": 0.21404303510758793,
+          "trend_strength": -0.1777876306619689
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 50.0,
+          "return_30": 0.05622146500077929,
+          "return_90": 0.1264833588279446,
+          "trend_strength": -0.12219597724080511
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.09579879116160783,
+          "return_90": 0.04267823190182107,
+          "trend_strength": -0.1244647953357052
+        }
+      ],
+      "legs": [
+        {
+          "time": 1778457600000,
+          "side": "SELL",
+          "symbol": "ETHUSDT",
+          "market_price": 2371.26,
+          "execution_price": 2370.0743700000003,
+          "market_notional": 6.0727197587731645,
+          "fee": 0.0060696833988937784,
+          "slippage_cost": 0.0030363598793864445
+        },
+        {
+          "time": 1778457600000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 10.71,
+          "execution_price": 10.715355,
+          "market_notional": 5.97146602822388,
+          "fee": 0.0059744517612379915,
+          "slippage_cost": 0.002985733014111815
+        }
+      ]
+    },
+    {
+      "time": 1778889600000,
+      "regime": "BEAR",
+      "raw_regime": "BEAR",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 11.568027522319127,
+      "equity_after_trades": 11.559608388049764,
+      "ranked": [],
+      "legs": [
+        {
+          "time": 1778889600000,
+          "side": "SELL",
+          "symbol": "LINKUSDT",
+          "market_price": 10.07,
+          "execution_price": 10.064965,
+          "market_notional": 5.614627722148876,
+          "fee": 0.005611820408287803,
+          "slippage_cost": 0.0028073138610741353
+        }
+      ]
+    },
+    {
+      "time": 1784678400000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "LINKUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.559608388049764,
+      "equity_after_trades": 11.550935791856629,
+      "ranked": [
+        {
+          "symbol": "LINKUSDT",
+          "score": 66.66666666666667,
+          "return_30": 0.11255300012848513,
+          "return_90": -0.06792249730893418,
+          "trend_strength": -0.16757440952264435
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.13073101573576107,
+          "return_90": -0.18701217739999254,
+          "trend_strength": -0.17074462914419997
+        }
+      ],
+      "legs": [
+        {
+          "time": 1784678400000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 8.66,
+          "execution_price": 8.66433,
+          "market_notional": 5.779804194024882,
+          "fee": 0.005782694096121895,
+          "slippage_cost": 0.002889902097012108
+        }
+      ]
+    },
+    {
+      "time": 1785369600000,
+      "regime": "BEAR",
+      "raw_regime": "BEAR",
+      "previous_regime": "RECOVERY",
+      "trigger": "DEFENSIVE",
+      "selected": [],
+      "target_exposure": 0,
+      "equity_before": 11.333358867231674,
+      "equity_after_trades": 11.325018307441209,
+      "ranked": [],
+      "legs": [
+        {
+          "time": 1785369600000,
+          "side": "SELL",
+          "symbol": "LINKUSDT",
+          "market_price": 8.334,
+          "execution_price": 8.329833,
+          "market_notional": 5.562227269399926,
+          "fee": 0.005559446155765228,
+          "slippage_cost": 0.0027811136346992437
+        }
+      ]
+    },
+    {
+      "time": 1787184000000,
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "previous_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "selected": [
+        "LINKUSDT"
+      ],
+      "target_exposure": 0.5,
+      "equity_before": 11.325018307441209,
+      "equity_after_trades": 11.316521712456051,
+      "ranked": [
+        {
+          "symbol": "LINKUSDT",
+          "score": 83.33333333333333,
+          "return_30": 0.22855812870941472,
+          "return_90": 0.0819924157015477,
+          "trend_strength": -0.10032866817005215
+        },
+        {
+          "symbol": "ETHUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.1827149734613629,
+          "return_90": 0.05578884223155356,
+          "trend_strength": -0.11296825366851804
+        },
+        {
+          "symbol": "BNBUSDT",
+          "score": 33.333333333333336,
+          "return_30": 0.09844731913105886,
+          "return_90": -0.04717726016581136,
+          "trend_strength": -0.07719813277443632
+        }
+      ],
+      "legs": [
+        {
+          "time": 1787184000000,
+          "side": "BUY",
+          "symbol": "LINKUSDT",
+          "market_price": 10.557,
+          "execution_price": 10.5622785,
+          "market_notional": 5.662509153720604,
+          "fee": 0.005665340408297464,
+          "slippage_cost": 0.0028312545768599253
+        }
+      ]
+    }
+  ]
+}

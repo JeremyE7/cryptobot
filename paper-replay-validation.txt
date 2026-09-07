@@ -1,0 +1,17 @@
+Crypto Bot 7.0 — persistent paper/backtest equivalence validation
+
+Source database: included data/market.db (70,080 x 15m candles per symbol)
+Paper initialization: 2026-08-01 12:00 UTC
+First eligible paper decision: 2026-08-02 00:00 UTC
+Comparison close: 2026-09-06 23:59:59.999 UTC
+
+Persistent paper DAY_CLOSE equity : $11.259903012929811
+Backtest final equity              : $11.259903012929811
+Difference                         : $0.000000000000000
+Paper trade legs through Sep 6     : 1
+Backtest trade legs through Sep 6  : 1
+Paper SQLite/ledger integrity      : PASS
+
+This validates that the persistent forward engine reproduces the frozen 6.0
+backtest portfolio mechanics for the same signals, execution opens, fees and
+slippage over this real-data replay segment.

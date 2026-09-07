@@ -1,0 +1,40 @@
+{
+  "version": "7.0.0",
+  "strategy": "dual_regime_deadband_allocator 6.0-frozen",
+  "tests": {
+    "passed": 51,
+    "failed": 0
+  },
+  "historical_regression": {
+    "final_equity": 12.7519,
+    "return_pct": 27.52,
+    "max_drawdown_pct": -11.38,
+    "calmar": 1.75,
+    "profitable_90d_folds": "4/6",
+    "compounded_fold_return_pct": 33.08,
+    "unchanged_from_v6": true
+  },
+  "persistent_replay_equivalence": {
+    "source": "data/market.db",
+    "paper_initialized_at_utc": "2026-08-01T12:00:00Z",
+    "first_paper_decision_utc": "2026-08-02T00:00:00Z",
+    "comparison_close_utc": "2026-09-06T23:59:59.999Z",
+    "paper_equity": 11.259903012929811,
+    "backtest_equity": 11.259903012929811,
+    "difference": 0.0,
+    "paper_trade_legs": 1,
+    "backtest_trade_legs": 1,
+    "ledger_integrity": "PASS"
+  },
+  "safety_properties": [
+    "public Binance data only",
+    "no API key",
+    "no real orders",
+    "forward-only initialization",
+    "idempotent UTC-day processing",
+    "SQLite BEGIN IMMEDIATE transaction locking",
+    "immutable trade and decision ledger triggers",
+    "frozen strategy fingerprint",
+    "catch-up after missed days"
+  ]
+}
