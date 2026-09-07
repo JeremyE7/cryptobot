@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meme-hunter"
+version = "0.1.0"
+description = "Paper-only Solana meme coin radar for momentum, liquidity and holder concentration research"
+requires-python = ">=3.11"
+dependencies = ["httpx>=0.27,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[project.scripts]
+meme-hunter = "meme_hunter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
