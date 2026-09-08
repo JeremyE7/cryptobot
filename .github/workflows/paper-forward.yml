@@ -3,10 +3,9 @@ name: Crypto Paper Forward
 on:
   workflow_dispatch:
   schedule:
-    # Daily shortly after the UTC daily candle closes (19:17 Ecuador).
+    # 00:17 UTC = 19:17 Ecuador (America/Guayaquil, UTC-5; no DST).
     # GitHub may start scheduled jobs a few minutes late; the paper engine is idempotent/catch-up safe.
-    - cron: "17 19 * * *"
-      timezone: "America/Guayaquil"
+    - cron: "17 0 * * *"
 
 permissions:
   contents: write
