@@ -3,9 +3,11 @@ name: Crypto Paper Forward
 on:
   workflow_dispatch:
   schedule:
-    # 00:17 UTC = 19:17 Ecuador (America/Guayaquil, UTC-5; no DST).
-    # GitHub may start scheduled jobs a few minutes late; the paper engine is idempotent/catch-up safe.
+    # Primary: 00:17 UTC = 19:17 Ecuador (America/Guayaquil, UTC-5; no DST).
+    # Backup: 00:47 UTC = 19:47 Ecuador. The paper engine is idempotent/exactly-once,
+    # so this second window safely catches delayed/dropped scheduled runs without duplicating ticks.
     - cron: "17 0 * * *"
+    - cron: "47 0 * * *"
 
 permissions:
   contents: write
