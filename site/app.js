@@ -1,8 +1,104 @@
-const $=id=>document.getElementById(id);const money=n=>`$${Number(n||0).toFixed(2)}`;const pct=n=>`${Number(n||0)>=0?'+':''}${Number(n||0).toFixed(2)}%`;
-function path(points,key,w,h){if(points.length<2)return'';const v=points.map(x=>x[key]),lo=Math.min(...v),hi=Math.max(...v),r=Math.max(hi-lo,.0001),p=8;return points.map((x,i)=>`${i?'L':'M'}${(p+i*(w-2*p)/(points.length-1)).toFixed(1)},${(p+(hi-x[key])*(h-2*p)/r).toFixed(1)}`).join(' ')}
-function equityChart(points){if(points.length<2)return;const d=path(points,'equity',900,300);$('linePath').setAttribute('d',d);$('areaPath').setAttribute('d',`${d} L892,312 L8,312 Z`);$('equityEmpty').hidden=true}
-function derived(points){let peak=0,prev=null;return points.map(p=>{peak=Math.max(peak,p.equity);const dd=peak?100*(p.equity/peak-1):0,ret=prev?100*(p.equity/prev-1):0;prev=p.equity;return{...p,dd,ret}})}
-function drawdown(points){if(points.length<2)return;const d=derived(points);$('ddPath').setAttribute('d',path(d,'dd',600,170));$('ddEmpty').hidden=true}
-function daily(points){const d=derived(points).slice(-40).filter((_,i)=>i>0),box=$('dailyBars');if(!d.length)return;const max=Math.max(...d.map(x=>Math.abs(x.ret)),.01);box.innerHTML=d.map(x=>`<i class="bar ${x.ret<0?'neg':''}" style="--h:${Math.max(3,Math.abs(x.ret)/max*85)}%" title="${x.time}: ${pct(x.ret)}"></i>`).join('')}
-function render(d){const exp=d.equity?d.invested/d.equity*100:0;$('equity').textContent=Number(d.equity).toFixed(2);$('returnValue').textContent=pct(d.return_pct);$('returnValue').style.color=d.return_pct<0?'var(--red)':'var(--green)';$('exposure').textContent=pct(exp);$('invested').textContent=`${money(d.invested)} invertido`;$('cash').textContent=money(d.cash);$('drawdown').textContent=pct(d.max_drawdown_pct);$('regime').textContent=d.regime||'CASH';$('trades').textContent=d.trades??0;$('costs').textContent=`${money(d.costs)} en costos`;$('integrityLabel').textContent=d.integrity?'● ledger íntegro':'● revisar integridad';$('lastUpdate').textContent=`Última actualización · ${d.updated_at||'—'}`;$('startedAt').textContent=`inicio · ${d.started_at||'—'}`;$('donutExposure').textContent=`${exp.toFixed(0)}%`;$('allocationDonut').style.setProperty('--exposure',`${Math.max(0,Math.min(100,exp))*3.6}deg`);const pos=d.positions||[];const cashWeight=d.equity?d.cash/d.equity*100:100;$('positions').innerHTML=[...pos.map(p=>`<div class="position-row"><span>${p.symbol}</span><span>${Number(p.weight_pct||0).toFixed(1)}%</span></div>`),`<div class="position-row"><span>CASH</span><span>${cashWeight.toFixed(1)}%</span></div>`].join('');const dec=d.decisions||[];$('ledger').innerHTML=dec.length?dec.map(x=>`<div class="ledger-row"><span>${x.date}</span><span class="regime">${x.regime}</span><span>${x.trigger}</span></div>`).join(''):'<p class="muted">Todavía no hay decisiones procesadas.</p>';const pts=d.equity_curve||[];equityChart(pts);drawdown(pts);daily(pts)}
-fetch(`./data.json?t=${Date.now()}`).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(render).catch(()=>{$('integrityLabel').textContent='● sin datos'});
+const $ = id => document.getElementById(id);
+const money = n => `$${Number(n || 0).toFixed(2)}`;
+const pct = n => `${Number(n || 0) >= 0 ? '+' : ''}${Number(n || 0).toFixed(2)}%`;
+
+function path(points, key, w, h) {
+  if (points.length < 2) return '';
+  const values = points.map(x => x[key]);
+  const lo = Math.min(...values);
+  const hi = Math.max(...values);
+  const range = Math.max(hi - lo, .0001);
+  const pad = 8;
+  return points
+    .map((x, i) => `${i ? 'L' : 'M'}${(pad + i * (w - 2 * pad) / (points.length - 1)).toFixed(1)},${(pad + (hi - x[key]) * (h - 2 * pad) / range).toFixed(1)}`)
+    .join(' ');
+}
+
+function equityChart(points) {
+  if (points.length < 2) return;
+  const d = path(points, 'equity', 900, 300);
+  $('linePath').setAttribute('d', d);
+  $('areaPath').setAttribute('d', `${d} L892,312 L8,312 Z`);
+  $('equityEmpty').hidden = true;
+}
+
+function derived(points) {
+  let peak = 0;
+  let prev = null;
+  return points.map(p => {
+    peak = Math.max(peak, p.equity);
+    const dd = peak ? 100 * (p.equity / peak - 1) : 0;
+    const ret = prev ? 100 * (p.equity / prev - 1) : 0;
+    prev = p.equity;
+    return { ...p, dd, ret };
+  });
+}
+
+function drawdown(points) {
+  if (points.length < 2) return;
+  const d = derived(points);
+  $('ddPath').setAttribute('d', path(d, 'dd', 600, 170));
+  $('ddEmpty').hidden = true;
+}
+
+function daily(points) {
+  const d = derived(points).slice(-40).filter((_, i) => i > 0);
+  const box = $('dailyBars');
+  if (!d.length) return;
+  const max = Math.max(...d.map(x => Math.abs(x.ret)), .01);
+  box.innerHTML = d.map(x =>
+    `<i class="bar ${x.ret < 0 ? 'neg' : ''}" style="--h:${Math.max(3, Math.abs(x.ret) / max * 85)}%" title="${x.time}: ${pct(x.ret)}"></i>`
+  ).join('');
+}
+
+function render(d) {
+  const exp = d.equity ? d.invested / d.equity * 100 : 0;
+  $('equity').textContent = Number(d.equity).toFixed(2);
+  $('returnValue').textContent = pct(d.return_pct);
+  $('returnValue').style.color = d.return_pct < 0 ? 'var(--red)' : 'var(--green)';
+  $('exposure').textContent = pct(exp);
+  $('invested').textContent = `${money(d.invested)} invertido`;
+  $('cash').textContent = money(d.cash);
+  $('drawdown').textContent = pct(d.max_drawdown_pct);
+  $('regime').textContent = d.regime || 'CASH';
+  $('trades').textContent = d.trades ?? 0;
+  $('costs').textContent = `${money(d.costs)} en costos`;
+  $('integrityLabel').textContent = d.integrity ? '● ledger íntegro' : '● revisar integridad';
+  $('lastUpdate').textContent = `Última actualización · ${d.updated_at || '—'} · auto-refresh 60s`;
+  $('startedAt').textContent = `inicio · ${d.started_at || '—'}`;
+  $('donutExposure').textContent = `${exp.toFixed(0)}%`;
+  $('allocationDonut').style.setProperty('--exposure', `${Math.max(0, Math.min(100, exp)) * 3.6}deg`);
+
+  const pos = d.positions || [];
+  const cashWeight = d.equity ? d.cash / d.equity * 100 : 100;
+  $('positions').innerHTML = [
+    ...pos.map(p => `<div class="position-row"><span>${p.symbol}</span><span>${Number(p.weight_pct || 0).toFixed(1)}%</span></div>`),
+    `<div class="position-row"><span>CASH</span><span>${cashWeight.toFixed(1)}%</span></div>`
+  ].join('');
+
+  const dec = d.decisions || [];
+  $('ledger').innerHTML = dec.length
+    ? dec.map(x => `<div class="ledger-row"><span>${x.date}</span><span class="regime">${x.regime}</span><span>${x.trigger}</span></div>`).join('')
+    : '<p class="muted">Todavía no hay decisiones procesadas.</p>';
+
+  const pts = d.equity_curve || [];
+  equityChart(pts);
+  drawdown(pts);
+  daily(pts);
+}
+
+async function refreshDashboard() {
+  try {
+    const response = await fetch(`./data.json?t=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(response.status);
+    render(await response.json());
+  } catch {
+    $('integrityLabel').textContent = '● sin datos';
+  }
+}
+
+refreshDashboard();
+setInterval(refreshDashboard, 60_000);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) refreshDashboard();
+});
