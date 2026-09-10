@@ -1,11 +1,11 @@
 {
   "strategy": "dual_regime_deadband_allocator 6.0-frozen",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-09-10 04:29 UTC",
-  "equity": 9.6293,
-  "return_pct": -3.71,
+  "updated_at": "2026-09-10 05:14 UTC",
+  "equity": 9.6423,
+  "return_pct": -3.58,
   "cash": 4.9925,
-  "invested": 4.6368,
+  "invested": 4.6498,
   "max_drawdown_pct": -3.78,
   "regime": "RECOVERY",
   "trades": 1,
@@ -14,8 +14,8 @@
   "positions": [
     {
       "symbol": "LINKUSDT",
-      "value": 4.6368,
-      "weight_pct": 48.15
+      "value": 4.6498,
+      "weight_pct": 48.22
     }
   ],
   "equity_curve": [
@@ -28,8 +28,8 @@
       "equity": 9.6218802
     },
     {
-      "time": "2026-09-10 04:29 UTC",
-      "equity": 9.6293
+      "time": "2026-09-10 05:14 UTC",
+      "equity": 9.6423
     }
   ],
   "decisions": [
