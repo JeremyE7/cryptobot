@@ -1,7 +1,7 @@
 {
   "strategy": "dual_regime_deadband_allocator 6.0-frozen",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-09-17 04:44 UTC",
+  "updated_at": "2026-09-17 05:29 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
@@ -50,7 +50,7 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-09-17 04:44 UTC",
+      "time": "2026-09-17 05:29 UTC",
       "equity": 9.5163
     }
   ],
