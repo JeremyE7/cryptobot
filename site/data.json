@@ -1,13 +1,13 @@
 {
   "strategy": "dual_regime_deadband_allocator 6.0-frozen",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-09-19 04:59 UTC",
+  "updated_at": "2026-09-20 04:44 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
   "invested": 0.0,
   "max_drawdown_pct": -5.16,
-  "regime": "STRONG_BULL",
+  "regime": "RECOVERY",
   "trades": 2,
   "costs": 0.0143,
   "integrity": true,
@@ -58,11 +58,20 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-09-19 04:59 UTC",
+      "time": "2026-09-19 23:59 UTC",
+      "equity": 9.51625535
+    },
+    {
+      "time": "2026-09-20 04:44 UTC",
       "equity": 9.5163
     }
   ],
   "decisions": [
+    {
+      "date": "2026-09-20",
+      "regime": "RECOVERY",
+      "trigger": "REGIME_CHANGE"
+    },
     {
       "date": "2026-09-19",
       "regime": "STRONG_BULL",
@@ -117,11 +126,6 @@
       "date": "2026-09-09",
       "regime": "RECOVERY",
       "trigger": "NONE"
-    },
-    {
-      "date": "2026-09-08",
-      "regime": "RECOVERY",
-      "trigger": "START"
     }
   ]
 }
