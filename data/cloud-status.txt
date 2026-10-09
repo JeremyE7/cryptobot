@@ -3,16 +3,16 @@
 Strategy       : dual_regime_deadband_allocator 6.0-frozen (FROZEN)
 Started        : 2026-09-07 19:00 UTC
 First eligible : 2026-09-08 00:00 UTC
-Last processed : 2026-10-08 00:00 UTC
-Market mark    : 2026-10-08 06:29 UTC
+Last processed : 2026-10-09 00:00 UTC
+Market mark    : 2026-10-09 05:59 UTC
 Initial        : $10.0000
 Equity         : $9.5163
 Return         : -4.84%
 Max DD         : -5.16%
 Cash           : $9.5163
 Invested       : $0.0000 (0.00%)
-Regime         : RECOVERY (raw=RECOVERY)
-Trades         : 2 legs across 31 processed day(s)
+Regime         : RECOVERY (raw=NEUTRAL)
+Trades         : 2 legs across 32 processed day(s)
 Costs          : $0.0143 (fees $0.0095 + slip $0.0048)
 Turnover       : $9.5306
 
@@ -20,11 +20,11 @@ Positions:
   CASH
 
 Forward benchmarks from the exact paper start:
-  BTCUSDT        +4.41%
-  BNBUSDT        +3.55%
-  ETHUSDT        +2.75%
-  LINKUSDT       +2.64%
-  EQUAL_WEIGHT   +2.98%
+  BTCUSDT        +4.10%
+  BNBUSDT        +0.35%
+  ETHUSDT        +0.04%
+  LINKUSDT       +0.88%
+  EQUAL_WEIGHT   +0.42%
 
 Integrity:
   PASS SQLite + ledger/account totals consistent
