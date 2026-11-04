@@ -1,7 +1,7 @@
 {
   "strategy": "dual_regime_deadband_allocator 6.0-frozen",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-11-03 07:14 UTC",
+  "updated_at": "2026-11-04 05:59 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
@@ -238,11 +238,20 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-11-03 07:14 UTC",
+      "time": "2026-11-03 23:59 UTC",
+      "equity": 9.51625535
+    },
+    {
+      "time": "2026-11-04 05:59 UTC",
       "equity": 9.5163
     }
   ],
   "decisions": [
+    {
+      "date": "2026-11-04",
+      "regime": "NEUTRAL",
+      "trigger": "NONE"
+    },
     {
       "date": "2026-11-03",
       "regime": "NEUTRAL",
@@ -297,11 +306,6 @@
       "date": "2026-10-24",
       "regime": "RECOVERY",
       "trigger": "NONE"
-    },
-    {
-      "date": "2026-10-23",
-      "regime": "RECOVERY",
-      "trigger": "REGIME_CHANGE"
     }
   ]
 }
