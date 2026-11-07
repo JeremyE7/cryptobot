@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crypto-bot"
-version = "8.0.0"
+version = "8.1.0"
 description = "Frozen dual-regime allocator with persistent idempotent GitHub Actions forward paper trading."
 requires-python = ">=3.12"
 dependencies = [

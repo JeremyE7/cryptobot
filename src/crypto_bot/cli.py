@@ -490,7 +490,7 @@ def cmd_allocator(args: argparse.Namespace) -> int:
     r = report.full_result
     eq = next(b for b in report.full_benchmarks if b.name == "EQUAL-WEIGHT HOLD")
 
-    print("\n=== CRYPTO BOT — FINAL DUAL-REGIME DEADBAND ALLOCATOR 6.0 ===")
+    print("\n=== CRYPTO BOT — AGGRESSIVE DUAL-REGIME DEADBAND ALLOCATOR 7.0 ===")
     print(f"Symbols       : {', '.join(sorted(args.symbols))}")
     print(f"Regime slow   : {args.btc_symbol} 1D close/EMA50/EMA200 + 5-day EMA50 slope")
     print(f"Regime fast   : {args.btc_symbol} 4H close/EMA20/EMA50 + 12H EMA50 slope/momentum")
@@ -660,6 +660,28 @@ def cmd_paper_init(args: argparse.Namespace) -> int:
     print(f"First decision : {_paper_utc_text(account.first_eligible_day)}")
     print("\nNo historical trade was imported. The forward account starts from cash and can only act on future UTC days.")
     print("Next: crypto-bot paper tick")
+    return 0
+
+
+def cmd_paper_upgrade(args: argparse.Namespace) -> int:
+    trader = _paper_trader(args)
+    now_ms = _paper_now_ms()
+    if not args.no_sync:
+        print("=== PAPER UPGRADE — SYNC BINANCE PUBLIC DATA ===")
+    try:
+        if not args.no_sync:
+            trader.sync_market(now_ms=now_ms)
+        before, after = trader.upgrade(now_ms=now_ms)
+    except Exception as exc:
+        raise SystemExit(f"Paper upgrade failed safely: {exc}") from exc
+
+    print("\n=== PAPER STRATEGY UPGRADED ===")
+    print(f"Paper DB       : {Path(args.paper_db).resolve()}")
+    print(f"Before         : {before.strategy_name} {before.strategy_version} ({before.strategy_hash[:16]}...)")
+    print(f"After          : {after.strategy_name} {after.strategy_version} ({after.strategy_hash[:16]}...)")
+    print(f"Last processed : {_paper_utc_text(after.last_processed_day)}")
+    print(f"Regime         : {after.last_regime or '-'} (raw={after.last_raw_regime or '-'})")
+    print("\nDecisions and trades were preserved. The next tick will trade with the new profile.")
     return 0
 
 
@@ -865,14 +887,14 @@ def build_parser() -> argparse.ArgumentParser:
     allocator.add_argument("--warmup-days", type=int, default=240, help="Initial daily indicator warmup (default: 240)")
     allocator.add_argument("--fold-days", type=int, default=90, help="Walk-forward fold length (default: 90)")
     allocator.add_argument("--top-k", type=int, default=2, help="Number of leaders held in STRONG_BULL (default: 2)")
-    allocator.add_argument("--recovery-top-k", type=int, default=1, help="Number of leaders held in RECOVERY (default: 1)")
+    allocator.add_argument("--recovery-top-k", type=int, default=2, help="Number of leaders held in RECOVERY (default: 2)")
     allocator.add_argument("--bull-exposure", type=float, default=100.0, help="Percent invested in STRONG_BULL (default: 100)")
-    allocator.add_argument("--recovery-exposure", type=float, default=50.0, help="Percent invested in RECOVERY (default: 50)")
-    allocator.add_argument("--neutral-exposure", type=float, default=0.0, help="Percent invested in NEUTRAL regime (default: 0)")
+    allocator.add_argument("--recovery-exposure", type=float, default=70.0, help="Percent invested in RECOVERY (default: 70)")
+    allocator.add_argument("--neutral-exposure", type=float, default=40.0, help="Percent invested in NEUTRAL regime (default: 40)")
     allocator.add_argument("--bear-exposure", type=float, default=0.0, help="Percent invested in BEAR regime (default: 0)")
     allocator.add_argument("--rebalance-weekday", type=int, default=0, help="UTC weekday for weekly rebalance: Monday=0..Sunday=6 (default: 0)")
     allocator.add_argument("--rebalance-band", type=float, default=10.0, help="Absolute allocation drift percent tolerated before trading (default: 10)")
-    allocator.add_argument("--min-order", type=float, default=4.90, help="Minimum simulated order notional USDT (default: 4.90; allows two near-$5 legs after costs)")
+    allocator.add_argument("--min-order", type=float, default=1.0, help="Minimum simulated order notional USDT (default: 1.0; simulation-only floor)")
     allocator.add_argument("--no-emergency-bear-exit", action="store_true", help="Disable daily defensive cash exit in NEUTRAL/BEAR")
     allocator.add_argument("--no-regime-change-rebalance", action="store_true", help="Only rebalance weekly; ignore daily regime transitions")
     allocator.add_argument("--recovery-confirm-days", type=int, default=1, help="Consecutive raw RECOVERY days required before adding risk (default: 1)")
@@ -881,7 +903,7 @@ def build_parser() -> argparse.ArgumentParser:
     allocator.add_argument("--reentry-lockout-days", type=int, default=0, help="Days to block RECOVERY re-entry after confirmed risk-off exit (default: 0)")
     allocator.add_argument("--fast-entry-gap", type=float, default=0.10, help="Minimum positive 4H EMA20/EMA50 gap percent for risk-on (default: 0.10)")
     allocator.add_argument("--fast-exit-gap", type=float, default=-0.10, help="Negative 4H EMA20/EMA50 gap percent that ends RECOVERY deadband hold (default: -0.10)")
-    allocator.add_argument("--no-slow-bull-mixed-recovery", action="store_true", help="Disable 50% RECOVERY exposure when daily BTC trend remains bullish but 4H is mixed")
+    allocator.add_argument("--no-slow-bull-mixed-recovery", action="store_true", help="Disable the 50%% RECOVERY exposure when daily BTC trend remains bullish but 4H is mixed")
     allocator.add_argument("--output", default="data/allocator-latest.json", help="JSON report path")
     allocator.set_defaults(func=cmd_allocator)
 
@@ -897,14 +919,14 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--warmup-days", type=int, default=240, help="Initial daily indicator warmup (default: 240)")
     run.add_argument("--fold-days", type=int, default=90, help="Walk-forward fold length (default: 90)")
     run.add_argument("--top-k", type=int, default=2, help="Number of leaders held in STRONG_BULL (default: 2)")
-    run.add_argument("--recovery-top-k", type=int, default=1, help="Number of leaders held in RECOVERY (default: 1)")
+    run.add_argument("--recovery-top-k", type=int, default=2, help="Number of leaders held in RECOVERY (default: 2)")
     run.add_argument("--bull-exposure", type=float, default=100.0, help="Percent invested in STRONG_BULL (default: 100)")
-    run.add_argument("--recovery-exposure", type=float, default=50.0, help="Percent invested in RECOVERY (default: 50)")
-    run.add_argument("--neutral-exposure", type=float, default=0.0, help="Percent invested in NEUTRAL regime (default: 0)")
+    run.add_argument("--recovery-exposure", type=float, default=70.0, help="Percent invested in RECOVERY (default: 70)")
+    run.add_argument("--neutral-exposure", type=float, default=40.0, help="Percent invested in NEUTRAL regime (default: 40)")
     run.add_argument("--bear-exposure", type=float, default=0.0, help="Percent invested in BEAR regime (default: 0)")
     run.add_argument("--rebalance-weekday", type=int, default=0, help="UTC weekday for weekly rebalance (default: Monday=0)")
     run.add_argument("--rebalance-band", type=float, default=10.0, help="Allocation drift percent tolerated before trading (default: 10)")
-    run.add_argument("--min-order", type=float, default=4.90, help="Minimum simulated order notional USDT (default: 4.90)")
+    run.add_argument("--min-order", type=float, default=1.0, help="Minimum simulated order notional USDT (default: 1.0)")
     run.add_argument("--no-emergency-bear-exit", action="store_true")
     run.add_argument("--no-regime-change-rebalance", action="store_true")
     run.add_argument("--recovery-confirm-days", type=int, default=1)
@@ -917,7 +939,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--output", default="data/allocator-latest.json")
     run.set_defaults(func=cmd_run)
 
-    paper = sub.add_parser("paper", help="Persistent forward paper trading using the frozen 6.0 allocator")
+    paper = sub.add_parser("paper", help="Persistent forward paper trading using the 7.0-aggressive allocator")
     paper_sub = paper.add_subparsers(dest="paper_command", required=True)
 
     paper_init = paper_sub.add_parser("init", help="Create a new forward-only paper account")
@@ -925,6 +947,15 @@ def build_parser() -> argparse.ArgumentParser:
     paper_init.add_argument("--paper-db", default=DEFAULT_PAPER_DB, help=f"Persistent paper account path (default: {DEFAULT_PAPER_DB})")
     paper_init.add_argument("--cash", type=float, default=10.0, help="Initial fictitious USDT cash (default: 10)")
     paper_init.set_defaults(func=cmd_paper_init)
+
+    paper_upgrade = paper_sub.add_parser(
+        "upgrade",
+        help="Adopt the current aggressive strategy on an existing paper account, preserving its ledger",
+    )
+    paper_upgrade.add_argument("--db", default=DEFAULT_DB_PATH, help=f"Market SQLite path (default: {DEFAULT_DB_PATH})")
+    paper_upgrade.add_argument("--paper-db", default=DEFAULT_PAPER_DB, help=f"Persistent paper account path (default: {DEFAULT_PAPER_DB})")
+    paper_upgrade.add_argument("--no-sync", action="store_true", help="Do not call Binance; use already-stored market data")
+    paper_upgrade.set_defaults(func=cmd_paper_upgrade)
 
     paper_tick = paper_sub.add_parser("tick", help="Sync data and process each new UTC day exactly once")
     paper_tick.add_argument("--db", default=DEFAULT_DB_PATH, help=f"Market SQLite path (default: {DEFAULT_DB_PATH})")

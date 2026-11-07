@@ -1,181 +1,162 @@
-# Crypto Bot — Persistent Forward Paper Trader 7.0
+# Crypto Bot — Forward Paper Trader 7.0-aggressive
 
-Version 7.0 keeps the **6.0 trading strategy frozen** and adds the missing operational layer needed for a real forward paper test. It still uses only Binance public Spot market data and **never sends real orders**.
+Bot de paper trading con datos públicos de Binance. **Nunca envía órdenes reales** ni usa claves de API, retiros ni permisos de trading.
 
-> **Status:** ready for forward paper observation, not real-money automation.
+> **Estado:** paper forward con perfil agresivo. No es dinero real.
 
-## What changed from 6.0
+## Qué cambió en esta versión
 
-The historical strategy itself did **not** change. Version 7.0 adds:
+La versión anterior (6.0) quedó atrapada en efectivo: después de una pequeña pérdida, el mínimo de orden de $4.90 hacía imposible comprar cualquier posición de $5 o dos posiciones de ~$4.75. El bot siguió calculando señales, pero no podía ejecutar ninguna compra. Esta versión corrige ese bloqueo y sube el riesgo:
 
-- `data/paper.db`: persistent fictitious account, separate from market data.
-- `crypto-bot paper init`: starts a new forward-only account from cash.
-- `crypto-bot paper tick`: synchronizes Binance and processes every new UTC day exactly once.
-- `crypto-bot paper status`: equity, positions, costs, benchmarks, drawdown and recent trades.
-- `crypto-bot paper doctor`: integrity/frozen-strategy checks.
-- Persistent positions and cash across restarts.
-- Catch-up after missed/offline days.
-- SQLite transaction locking and idempotency against duplicate scheduled runs.
-- Immutable `decisions` and `trades` ledgers enforced by SQLite triggers.
-- Frozen strategy fingerprint: changing the 6.0 rules mid-forward causes a hard failure instead of silently contaminating the experiment.
-- Daily equity snapshots and forward BTC/BNB/ETH/LINK/equal-weight benchmarks from the exact paper start.
-- Automatic Linux `systemd` and Windows Task Scheduler installers.
+- **Zona mixta (NEUTRAL): 40% de exposición** (antes 0%).
+- **Recuperación (RECOVERY): 70% en los 2 líderes** (antes 50% en 1).
+- **Alcista fuerte (STRONG_BULL): 100% en los 2 líderes** (sin cambio).
+- **Bajista (BEAR): 0%**, con salida inmediata (sin cambio).
+- **Mínimo de orden simulado: $1.00** (antes $4.90), para que una cuenta de $10 nunca vuelva a bloquearse.
+- **Dashboard nuevo:** ahora dice explícitamente si el bot compró, vendió, mantiene o está en efectivo, y explica el motivo.
 
-## Frozen strategy
+El perfil sigue siendo defensivo en mercados bajistas. Si no hay ninguna señal válida, el bot espera en efectivo: no compra por comprar.
 
-Same validated 6.0 defaults:
+## Estrategia
 
-- BTC 1D structural regime + BTC 4H fast regime.
-- Deadband `+0.10% / -0.10%` around EMA20/EMA50.
-- `STRONG_BULL`: 100% in top 2.
-- `RECOVERY`: 50% in top 1, 50% cash.
-- `NEUTRAL` / `BEAR`: cash.
-- Risk-on confirmation: 1 day.
-- NEUTRAL risk-off confirmation: 2 days.
-- BEAR exit: immediate.
-- Weekly leader rebalance Monday UTC plus regime-transition rebalances.
-- Fee simulation: 0.10%/side.
-- Slippage simulation: 0.05%/side.
-- Minimum simulated order: $4.90.
+- BTC 1D define el régimen estructural.
+- BTC 4H define el régimen rápido.
+- Deadband `+0.10% / -0.10%` alrededor de EMA20/EMA50.
+- `STRONG_BULL`: 100% en los 2 activos mejor rankeados.
+- `RECOVERY`: 70% en los 2 mejores.
+- `NEUTRAL`: 40% en el líder, solo si cumple el filtro de tendencia.
+- `BEAR`: 0% en efectivo.
+- Confirmaciones: 1 día para riesgo-on, 2 días para salir de una zona mixta; BEAR es inmediato.
+- Rebalanceo semanal los lunes UTC + cambios de régimen.
+- Costos simulados: 0.10% por lado + 0.05% de slippage.
+- Mínimo de orden simulado: $1.00.
 
-The included historical allocator remains unchanged at **$10 → $12.7519 (+27.52%)**, max drawdown **-11.38%**, with **4/6** profitable 90-day folds. This is historical evidence only.
+## Validación histórica actual
 
-## Why `paper.db` is separate
+Ventana completa de la evaluación: **2025-05-06 → 2026-11-06** (datos públicos de Binance).
 
-`data/market.db` is replaceable market history. `data/paper.db` is the forward experiment and should be treated as valuable state:
+| Métrica | Resultado |
+|---|---:|
+| Retorno | **+21.00%** |
+| Equity final desde $10 | **$12.10** |
+| Max drawdown | **-19.92%** |
+| Exposición media | **31.27%** |
+| Rebalanceos | 84 |
+| Órdenes | 162 |
+| Costos | $0.9062 |
+| Walk-forward | **4/6 folds positivos** |
+| Peor fold | -5.68% |
+| Peor drawdown por fold | -13.74% |
+
+Es evidencia histórica, no una promesa. El perfil agresivo tiene más drawdown que el perfil 6.0 anterior; esa es la contrapartida de participar más.
+
+## Cómo se opera
+
+`data/paper.db` es la cuenta ficticia persistente y el ledger inmutable. `data/market.db` son velas de mercado reconstruibles.
 
 ```text
 market.db                 paper.db
 ─────────                 ────────
-Binance candles           cash
-replaceable               positions
-can be rebuilt            decisions
-                          immutable trades
-                          equity snapshots
-                          forward start prices
+velas Binance             cash
+reemplazable              posiciones
+se puede reconstruir      decisiones
+                          trades inmutables
+                          snapshots de equity
 ```
 
-Do not delete `paper.db` during the forward test. Back it up periodically.
+No borres `data/paper.db` durante el experimento.
 
-## First setup
-
-The ZIP already includes the 2-year `data/market.db`.
-
-### Git Bash / Windows
+## Primer arranque
 
 ```bash
-python -m venv .venv && source .venv/Scripts/activate && python -m pip install -e ".[dev]" && pytest
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+pytest
 ```
 
-### Linux server
-
-```bash
-python3 -m venv .venv && source .venv/bin/activate && python -m pip install -e ".[dev]" && pytest
-```
-
-Expected test result for this package: **51 passed**.
-
-## Start the forward experiment — once
-
-Run this only once on the machine that will own the forward account:
+Resultado esperado: **53 passed**.
 
 ```bash
 crypto-bot paper init --cash 10
-```
-
-Important: initialization **does not import any historical position**. It starts at `$10 cash`, and the first eligible decision is the next UTC day. That keeps the forward experiment genuinely out-of-sample.
-
-Then inspect it:
-
-```bash
 crypto-bot paper status
 ```
 
-## Daily operation
+La inicialización no importa posiciones históricas: empieza en $10 de efectivo y la primera decisión es el siguiente día UTC.
 
-Normally you do not need to run this manually after automation is installed:
+## Actualizar una cuenta que ya existe
+
+Si `data/paper.db` fue creado con la versión 6.0, el bot se negará a operar hasta migrarlo. El comando de upgrade conserva todo el historial de decisiones y trades y adopta el perfil 7.0-aggressive:
+
+```bash
+crypto-bot paper upgrade
+crypto-bot paper doctor
+crypto-bot paper tick
+```
+
+El upgrade no borra ni reescribe el ledger. Solo actualiza la huella de la estrategia y el estado de régimen reconstruido.
+
+## Operación diaria
 
 ```bash
 crypto-bot paper tick
 ```
 
-A tick:
+Un tick:
 
-1. refreshes public Binance 15m data;
-2. finalizes previously partial stored candles by re-fetching the latest kline;
-3. finds each unprocessed UTC day;
-4. rebuilds the frozen regime from only information available before that day open;
-5. simulates the required buy/sell at that day's first 15m open;
-6. writes the decision/trades/account atomically to `paper.db`;
-7. refuses to process the same day twice.
+1. sincroniza velas públicas de Binance;
+2. finaliza velas parciales;
+3. procesa cada día UTC pendiente exactamente una vez;
+4. reconstruye el régimen con información disponible antes de la apertura;
+5. ejecuta la compra/venta simulada a la primera apertura de 15m del día;
+6. guarda decisión, trades y cuenta de forma atómica;
+7. rechaza duplicados.
 
-If the machine was off for several days, the next tick catches those paper days up sequentially and labels them `CATCHUP`.
-
-For offline testing only:
-
-```bash
-crypto-bot paper tick --no-sync
-```
-
-## Status and health
+Si la máquina estuvo apagada, el siguiente tick hace catch-up de los días faltantes.
 
 ```bash
 crypto-bot paper status
 crypto-bot paper doctor
 ```
 
-`status` includes current fictitious equity, cash, positions, exposure, costs, max drawdown, frozen regime, trade ledger and forward benchmarks.
+## Automatización
 
-`doctor` verifies sufficient market history, strategy fingerprint, SQLite integrity, last processed day and ledger/account fee/slippage/turnover totals.
-
-## Automate it on the $10 laptop
-
-### Linux / systemd — recommended
-
-After installing the venv/project:
+### Linux / systemd
 
 ```bash
 ./scripts/install-paper-systemd.sh
-```
-
-This installs a persistent timer for **00:10 UTC every day** (19:10 in Ecuador). `Persistent=true` means systemd runs a missed timer when the laptop comes back online; the paper engine also catches up any missing days itself.
-
-Useful commands:
-
-```bash
 systemctl status crypto-bot-paper.timer
 journalctl -u crypto-bot-paper.service
 ```
 
 ### Windows
 
-From PowerShell:
-
 ```powershell
 .\scripts\install-paper-windows.ps1
 ```
 
-It schedules the same daily tick at 19:10 local time with `StartWhenAvailable`.
+### GitHub Actions
 
-## Validation performed before packaging
+Ver [`CLOUD_SETUP.md`](CLOUD_SETUP.md). El workflow diario ejecuta el tick, valida el ledger, regenera `data/cloud-status.txt` y `site/data.json`, y publica el dashboard.
 
-- **51/51 tests passing.**
-- Historical 6.0 allocator result unchanged: **+27.52%, DD -11.38%, Calmar 1.75, 4/6 profitable folds**.
-- Persistent engine replayed real `market.db` from Aug 2 through Sep 6, 2026.
-- Persistent paper day-close equity: `$11.259903012929811`.
-- Frozen backtest equity for the exact same interval: `$11.259903012929811`.
-- Difference: **exactly 0.0** at stored precision.
-- Trade-leg count also matched exactly.
-- See `data/paper-replay-validation.txt`.
+## Dashboard
 
-## Forward-test rule
+`site/index.html` + `site/app.js` muestran:
 
-Do **not** tune the strategy while this `paper.db` is running. Software bugs may be fixed; strategy parameters should remain frozen. Observe for at least ~90 days and preferably until enough actual forward regime transitions/trades have accumulated to make the result informative.
+- un bloque grande **AHORA MISMO** con `EN EFECTIVO`, `INVERTIDO`, `COMPRÓ` o `VENDIÓ`;
+- la última acción ejecutada y la próxima revisión;
+- el reglamento completo de los 4 regímenes;
+- el historial de compras/ventas y las últimas decisiones explicadas en español;
+- equity, exposición, cash, drawdown, posiciones y comparación contra BTC/BNB/ETH/LINK.
 
-No API key, withdrawal permission, or real trading permission is used anywhere in 7.0.
+Para regenerar el snapshot público:
 
----
+```bash
+python scripts/build-dashboard.py
+```
 
-## GitHub Cloud Paper Forward (8.0 infrastructure)
+## Regla de investigación
 
-For the zero-server deployment, see [`CLOUD_SETUP.md`](CLOUD_SETUP.md). The cloud package does **not** change the frozen 6.0 allocator; it automates the persistent paper-forward engine from 7.0 using GitHub Actions. No Binance API key, Turso account, or paid VM is required.
+No ajustes parámetros a mitad de una prueba forward sin documentarlo. Los bugs de software se corrigen; los cambios de estrategia se versionan y se migran con `paper upgrade`.
+
+No hay claves de API, permisos de retiro ni dinero real en ningún punto del proyecto.

@@ -61,18 +61,20 @@ class RankedAsset:
 
 @dataclass(frozen=True, slots=True)
 class AllocationRules:
-    # STRONG_BULL: diversify between two leaders. RECOVERY: half-size in one.
+    # v7 aggressive profile: stay invested in mixed markets instead of sitting
+    # in cash, and split RECOVERY between two leaders.
     top_k: int = 2
-    recovery_top_k: int = 1
+    recovery_top_k: int = 2
     bull_exposure: float = 1.0
-    recovery_exposure: float = 0.5
-    neutral_exposure: float = 0.0
+    recovery_exposure: float = 0.70
+    neutral_exposure: float = 0.40
     bear_exposure: float = 0.0
     rebalance_weekday: int = 0  # Monday UTC
     rebalance_band: float = 0.10
-    # Slightly below $5 so a $10 account can actually fund two ~50/50 legs
-    # after conservative fee/slippage debits.
-    min_order_notional: float = 4.90
+    # The simulated account starts at $10. A $4.90 floor deadlocked the bot for
+    # good once equity fell below ~$9.80: every target leg was then too small.
+    # This is a simulation minimum, not an exchange minimum.
+    min_order_notional: float = 1.00
     emergency_bear_exit: bool = True
     rebalance_on_regime_change: bool = True
     # Asymmetric hysteresis. Risk-on is intentionally fast; ambiguous risk-off

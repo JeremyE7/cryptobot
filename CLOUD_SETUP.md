@@ -1,40 +1,46 @@
 # Cloud paper-forward deployment (GitHub Actions)
 
-This package keeps the **6.0 trading strategy frozen** and moves only the 7.0 paper-forward infrastructure to GitHub-hosted automation.
+Este paquete usa el perfil **7.0-aggressive** y mantiene la infraestructura de paper forward en GitHub Actions.
 
-## Architecture
+## Arquitectura
 
-- GitHub Actions wakes once per day at **19:17 America/Guayaquil**.
-- Binance public market data uses `https://data-api.binance.vision`; no Binance account or API key is used.
-- `data/paper.db` is the canonical persistent fictitious account and immutable trade/decision ledger.
-- `data/paper.db` and `data/cloud-status.txt` are committed back to the **private** repository after a state change.
-- Mutable `data/market.db` is kept in GitHub Actions cache and is not committed daily.
-- `data/market-seed.db.gz` is an immutable recovery snapshot. If the cache disappears, the job restores the snapshot and catches up from Binance.
-- The workflow is idempotent and serialized with a concurrency group.
+- GitHub Actions despierta todos los días a las **19:17 America/Guayaquil** (00:17 UTC).
+- Los datos públicos vienen de `https://data-api.binance.vision`; no se usa cuenta ni API key de Binance.
+- `data/paper.db` es la cuenta ficticia persistente y el ledger inmutable.
+- `data/paper.db`, `data/cloud-status.txt` y `site/data.json` se commitean de vuelta al repositorio cuando cambia el estado.
+- `data/market.db` es caché mutable de velas y no se commitea.
+- `data/market-seed.db.gz` es una semilla de recuperación. Si la caché desaparece, el workflow la expande y sincroniza lo faltante.
+- El workflow es idempotente y está serializado con un grupo de concurrencia.
 
-## One-time setup
+## Configuración inicial
 
-1. Create an empty **private** GitHub repository.
-2. Push this folder to its default branch (`main` recommended).
-3. In GitHub open **Actions → Crypto Paper Forward → Run workflow** once.
-4. The first run creates `$10` fictitious cash only. It does not import a historical position. The following eligible UTC day can generate the first forward decision.
+1. Crea un repositorio privado vacío en GitHub.
+2. Sube esta carpeta a la rama por defecto (`main` recomendado).
+3. En GitHub abre **Actions → Crypto Paper Forward → Run workflow** una vez.
+4. El primer run crea $10 ficticios. No importa posiciones históricas.
 
-No repository secrets are required. No Turso account is required. No Binance API key is required.
+No se necesitan secrets, Turso ni servidor propio.
 
-## What is persisted
+## Qué se persiste
 
-`data/paper.db` is deliberately tracked. Do not delete or rewrite it after the forward experiment starts.
+- `data/paper.db`: cuenta, posiciones, decisiones y trades inmutables.
+- `data/cloud-status.txt`: resumen legible del último tick.
+- `site/data.json`: snapshot que consume la landing.
 
-`data/cloud-status.txt` is a convenience snapshot. Git history is also an audit trail of each paper tick.
+No borres ni reescribas `data/paper.db` después de iniciar el experimento. Si vienes de la versión 6.0, ejecuta una vez:
 
-`data/market.db` is disposable market cache. Losing it does **not** lose the paper account.
+```bash
+crypto-bot paper upgrade
+```
 
-## Manual recovery
+Ese comando conserva el historial y adopta el perfil 7.0-aggressive.
 
-If Actions cache is lost, the workflow automatically expands `data/market-seed.db.gz`, synchronizes all missing Binance candles, and performs catch-up days exactly once.
+## Recuperación manual
 
-## Viewing the bot
+Si se pierde la caché de Actions, el workflow expande `data/market-seed.db.gz`, sincroniza las velas faltantes y hace catch-up de los días pendientes exactamente una vez.
 
-Open the latest `Crypto Paper Forward` run, or open `data/cloud-status.txt` in the repository.
+## Ver el bot
 
-Do not tune strategy parameters during the forward test. Code/infrastructure bug fixes should be documented separately from strategy changes.
+Abre el último run de **Crypto Paper Forward**, revisa `data/cloud-status.txt` o visita la página de GitHub Pages generada desde `site/`.
+
+El bot puede permanecer en efectivo varios días si ninguna señal cumple las reglas. Eso es una decisión de protección, no un fallo. El dashboard ahora lo explica explícitamente.

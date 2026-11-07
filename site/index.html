@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#0a0a0a" />
-  <title>Paper $10 Dashboard</title>
-  <meta name="description" content="Dashboard en vivo del paper trading de $10." />
+  <title>Paper $10 · Qué está haciendo el bot</title>
+  <meta name="description" content="Estado claro del paper trading: si el bot compra, vende, mantiene o espera en efectivo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,6 +22,35 @@
       <div class="status-pill"><span id="integrityLabel">cargando</span></div>
     </header>
 
+    <section class="hero" aria-labelledby="botHeadline">
+      <div class="hero-main">
+        <span class="label">AHORA MISMO</span>
+        <div class="hero-action-row">
+          <span id="botAction" class="action-badge cash">EN EFECTIVO</span>
+          <span id="regimeBadge" class="regime-badge">—</span>
+        </div>
+        <h2 id="botHeadline">Cargando estado…</h2>
+        <p id="botExplain" class="hero-explain">Esperando los datos del bot.</p>
+        <div class="hero-chips">
+          <span class="chip"><b id="heroExposure">0%</b> invertido</span>
+          <span class="chip"><b id="heroCash">$10.00</b> en efectivo</span>
+          <span class="chip"><b id="heroRegime">—</b> régimen</span>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <div class="side-block">
+          <span class="label">ÚLTIMA ACCIÓN</span>
+          <strong id="lastAction">—</strong>
+          <small id="lastActionDetail">Todavía no hay operaciones.</small>
+        </div>
+        <div class="side-block">
+          <span class="label">PRÓXIMA REVISIÓN</span>
+          <strong id="nextCheck">—</strong>
+          <small>El bot solo opera cuando hay señal.</small>
+        </div>
+      </aside>
+    </section>
+
     <section class="summary-grid">
       <article class="metric metric-main">
         <span>Equity</span>
@@ -31,8 +60,34 @@
       <article class="metric"><span>Exposición</span><strong id="exposure">0.0%</strong><small id="invested">$0.00 invertido</small></article>
       <article class="metric"><span>Cash</span><strong id="cash">$10.00</strong><small>disponible</small></article>
       <article class="metric"><span>Drawdown máx.</span><strong id="drawdown">0.00%</strong><small>desde máximo</small></article>
-      <article class="metric"><span>Régimen</span><strong id="regime">—</strong><small>estado actual</small></article>
-      <article class="metric"><span>Trades</span><strong id="trades">0</strong><small id="costs">$0.00 en costos</small></article>
+      <article class="metric"><span>Régimen</span><strong id="regime">—</strong><small id="regimeShort">estado actual</small></article>
+      <article class="metric"><span>Operaciones</span><strong id="trades">0</strong><small id="costs">$0.00 en costos</small></article>
+    </section>
+
+    <section class="card card-wide playbook">
+      <div class="card-head">
+        <div><span class="label">CÓMO DECIDE</span><h2>Qué hace el bot en cada régimen</h2></div>
+        <span class="legend">Perfil v7 agresivo</span>
+      </div>
+      <div class="regime-grid">
+        <article class="regime-card" data-regime="STRONG_BULL">
+          <div class="regime-card-top"><span class="regime-dot"></span><span>ALCISTA FUERTE</span><b>100%</b></div>
+          <p>Compra los 2 activos más fuertes. Tendencia diaria y de 4 horas alineadas al alza.</p>
+        </article>
+        <article class="regime-card" data-regime="RECOVERY">
+          <div class="regime-card-top"><span class="regime-dot"></span><span>RECUPERACIÓN</span><b>70%</b></div>
+          <p>Compra 2 líderes con exposición parcial mientras el mercado confirma la mejora.</p>
+        </article>
+        <article class="regime-card" data-regime="NEUTRAL">
+          <div class="regime-card-top"><span class="regime-dot"></span><span>ZONA MIXTA</span><b>hasta 40%</b></div>
+          <p>Compra solo si hay un líder con tendencia positiva. Si no hay señal, espera en efectivo.</p>
+        </article>
+        <article class="regime-card" data-regime="BEAR">
+          <div class="regime-card-top"><span class="regime-dot"></span><span>BAJISTA</span><b>0%</b></div>
+          <p>Vende todo y se protege en efectivo. El modo bajista tiene salida inmediata.</p>
+        </article>
+      </div>
+      <p class="playbook-note">El bot no compra por comprar: primero mide la tendencia del mercado y luego busca los activos más fuertes. Filtro de compra: retorno de 30 días positivo, precio sobre la EMA200 y EMA50 con pendiente positiva. Si falta una condición, espera en efectivo y lo dice aquí arriba.</p>
     </section>
 
     <section class="dashboard-grid">
@@ -70,15 +125,35 @@
         <div class="card-head"><div><span class="label">RETORNO DIARIO</span><h2>Sesiones</h2></div></div>
         <div id="dailyBars" class="bars"><div class="empty-inline">Sin sesiones procesadas</div></div>
       </article>
-
-      <article class="card card-wide">
-        <div class="card-head"><div><span class="label">ACTIVIDAD</span><h2>Decisiones recientes</h2></div></div>
-        <div id="ledger" class="ledger-list"><p class="muted">Todavía no hay decisiones procesadas.</p></div>
-      </article>
     </section>
 
-    <footer><span id="startedAt">inicio: —</span><span>paper only</span></footer>
+    <section class="card card-wide">
+      <div class="card-head">
+        <div><span class="label">MOVIMIENTOS</span><h2>Compras y ventas ejecutadas</h2></div>
+        <span id="tradeSummary" class="legend">—</span>
+      </div>
+      <div id="tradeTable" class="trade-table"><p class="muted">Todavía no hay compras ni ventas.</p></div>
+    </section>
+
+    <section class="card card-wide">
+      <div class="card-head">
+        <div><span class="label">HISTORIAL</span><h2>Últimas decisiones, explicadas</h2></div>
+      </div>
+      <div id="ledger" class="ledger-list"><p class="muted">Todavía no hay decisiones procesadas.</p></div>
+      <p class="muted decision-note">Las decisiones anteriores al cambio de perfil se conservan como historial. La estrategia activa ahora es la v7 agresiva.</p>
+    </section>
+
+    <section class="card card-wide">
+      <div class="card-head">
+        <div><span class="label">CONTEXTO</span><h2>El bot contra el mercado</h2></div>
+        <span class="legend">Desde el inicio del paper</span>
+      </div>
+      <div id="benchmarks" class="benchmark-grid"></div>
+      <p class="muted benchmark-note">Si el bot está en efectivo mientras el mercado cae, no es un error: es su regla de protección. El paper no usa dinero real.</p>
+    </section>
+
+    <footer><span id="startedAt">inicio: —</span><span id="strategyLabel">paper only</span></footer>
   </main>
-  <script src="./app.js?v=2" defer></script>
+  <script src="./app.js?v=3" defer></script>
 </body>
 </html>

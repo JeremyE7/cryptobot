@@ -66,7 +66,13 @@ def test_ranking_and_target_weights_use_top2_in_strong_bull_and_half_top1_in_rec
     }
     ranked = rank_assets(features, MarketRegime.STRONG_BULL)
     assert [x.symbol for x in ranked] == ["AAA", "BBB"]
-    rules = AllocationRules(top_k=2, recovery_top_k=1, bull_exposure=1.0, recovery_exposure=0.5)
+    rules = AllocationRules(
+        top_k=2,
+        recovery_top_k=1,
+        bull_exposure=1.0,
+        recovery_exposure=0.5,
+        neutral_exposure=0.0,
+    )
     assert target_weights(MarketRegime.STRONG_BULL, ranked, rules) == {"AAA": 0.5, "BBB": 0.5}
 
     recovery_features = {
@@ -142,7 +148,7 @@ def test_hysteresis_reentry_lockout_breaks_neutral_recovery_pingpong():
     assert confirm2.effective_regime == MarketRegime.RECOVERY
 
 
-def test_v6_defaults_are_asymmetric_not_symmetric_lockout():
+def test_v7_defaults_are_aggressive_but_keep_bear_protection():
     rules = AllocationRules()
     assert rules.recovery_confirm_days == 1
     assert rules.strong_bull_confirm_days == 1
@@ -151,6 +157,11 @@ def test_v6_defaults_are_asymmetric_not_symmetric_lockout():
     assert rules.fast_entry_gap_pct == 0.10
     assert rules.fast_exit_gap_pct == -0.10
     assert rules.slow_bull_mixed_to_recovery is True
+    assert rules.neutral_exposure == 0.40
+    assert rules.recovery_exposure == 0.70
+    assert rules.recovery_top_k == 2
+    assert rules.bear_exposure == 0.0
+    assert rules.min_order_notional == 1.0
 
 
 def test_entry_deadband_blocks_tiny_fast_gap_but_allows_clear_recovery():

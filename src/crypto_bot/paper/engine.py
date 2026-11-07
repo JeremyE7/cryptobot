@@ -27,7 +27,7 @@ from crypto_bot.strategy.allocator import (
 )
 
 STRATEGY_NAME = "dual_regime_deadband_allocator"
-STRATEGY_VERSION = "6.0-frozen"
+STRATEGY_VERSION = "7.0-aggressive"
 DEFAULT_PAPER_DB = "data/paper.db"
 DEFAULT_FEE_RATE = 0.001
 DEFAULT_SLIPPAGE_RATE = 0.0005
@@ -291,12 +291,98 @@ class PaperTrader:
             )
             return repo.get_account()
 
+    def upgrade(self, *, now_ms: int) -> tuple[PaperAccount, PaperAccount]:
+        """Adopt the current strategy profile without deleting the paper history.
+
+        Decisions and trades are immutable, so the past ledger is preserved. Only
+        the account fingerprint and the reconstructed hysteresis state are
+        rewritten. The next tick then continues from the new profile.
+        """
+        data = self._load_market()
+        with PaperRepository(self.paper_db) as repo:
+            before = repo.get_account()
+            if before.strategy_hash == self.config_hash and before.strategy_config_json == self.config_json:
+                return before, before
+            if before.strategy_version == STRATEGY_VERSION:
+                raise ValueError(
+                    "The paper account already uses this strategy version with a different "
+                    "configuration. Refusing to overwrite it; use a separate --paper-db."
+                )
+
+            old_config = json.loads(before.strategy_config_json)
+            if (
+                old_config.get("symbols") != self.config.get("symbols")
+                or old_config.get("btc_symbol") != self.config.get("btc_symbol")
+            ):
+                raise ValueError(
+                    "Cannot upgrade an account with a different symbol universe. "
+                    "Keep the original symbols or start a separate paper account."
+                )
+
+            signal = None
+            if before.last_processed_day is not None:
+                signal_engine = PaperSignalEngine(
+                    {s: data[s] for s in self.symbols},
+                    data[self.btc_symbol],
+                    self.rules,
+                )
+                try:
+                    signal = signal_engine.signal_at(before.last_processed_day)
+                except ValueError as exc:
+                    raise ValueError(
+                        "Cannot upgrade: market data does not cover the last processed day. "
+                        "Sync market data first (crypto-bot paper tick --no-sync is not enough)."
+                    ) from exc
+
+            with repo.immediate_transaction() as conn:
+                if signal is None:
+                    conn.execute(
+                        """
+                        UPDATE account SET
+                            strategy_name=?, strategy_version=?, strategy_hash=?,
+                            strategy_config_json=?, updated_at=?
+                        WHERE id=1
+                        """,
+                        (
+                            STRATEGY_NAME,
+                            STRATEGY_VERSION,
+                            self.config_hash,
+                            self.config_json,
+                            now_ms,
+                        ),
+                    )
+                else:
+                    conn.execute(
+                        """
+                        UPDATE account SET
+                            strategy_name=?, strategy_version=?, strategy_hash=?,
+                            strategy_config_json=?, last_regime=?, last_raw_regime=?,
+                            pending_regime=?, pending_days=?, lockout_remaining=?,
+                            updated_at=?
+                        WHERE id=1
+                        """,
+                        (
+                            STRATEGY_NAME,
+                            STRATEGY_VERSION,
+                            self.config_hash,
+                            self.config_json,
+                            signal.regime.value,
+                            signal.raw_regime.value,
+                            signal.decision.pending_regime.value if signal.decision.pending_regime else None,
+                            signal.decision.pending_days,
+                            signal.decision.lockout_remaining,
+                            now_ms,
+                        ),
+                    )
+            return before, repo.get_account()
+
     def _assert_frozen(self, account: PaperAccount) -> None:
         # Use the exact stored config, and fail loudly if code defaults changed.
         if account.strategy_hash != self.config_hash or account.strategy_config_json != self.config_json:
             raise ValueError(
-                "Frozen strategy mismatch. The paper account was created with different rules. "
-                "Do not tune a running forward test; use the original 7.0 package or start a separate paper DB."
+                "Frozen strategy mismatch. This paper account was created with different rules. "
+                "Run `crypto-bot paper upgrade` to adopt the current 7.0-aggressive profile "
+                "while preserving its history, or use a separate --paper-db."
             )
 
     def sync_market(self, *, now_ms: int) -> dict[str, int]:

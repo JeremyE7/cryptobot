@@ -134,6 +134,44 @@ def test_frozen_strategy_fingerprint_rejects_tuning_mid_forward(synthetic_market
         altered.tick(now_ms=247 * DAY_MS + 10 * 60 * 1000, sync=False)
 
 
+def test_paper_upgrade_preserves_history_and_adopts_new_rules(synthetic_market, tmp_path):
+    market_db, _ = synthetic_market
+    paper_db = tmp_path / "paper.db"
+    legacy_rules = AllocationRules(
+        neutral_exposure=0.0,
+        recovery_exposure=0.5,
+        recovery_top_k=1,
+        min_order_notional=4.90,
+    )
+    legacy = PaperTrader(market_db=market_db, paper_db=paper_db, rules=legacy_rules)
+    legacy.init(initial_cash=10, now_ms=245 * DAY_MS + 12 * 60 * 60 * 1000)
+    legacy.tick(now_ms=250 * DAY_MS + 10 * 60 * 1000, sync=False)
+
+    with PaperRepository(paper_db) as repo:
+        # Simulate a ledger created by the previous 6.0 release.
+        repo.conn.execute("UPDATE account SET strategy_version='6.0-frozen' WHERE id=1")
+        repo.conn.commit()
+        decisions_before = repo.decision_count()
+        trades_before = repo.trade_count()
+        old_account = repo.get_account()
+
+    upgraded = PaperTrader(market_db=market_db, paper_db=paper_db)
+    before, after = upgraded.upgrade(now_ms=251 * DAY_MS + 10 * 60 * 1000)
+    assert before.strategy_hash == old_account.strategy_hash
+    assert after.strategy_hash == upgraded.config_hash
+    assert after.strategy_version == "7.0-aggressive"
+
+    with PaperRepository(paper_db) as repo:
+        assert repo.decision_count() == decisions_before
+        assert repo.trade_count() == trades_before
+        assert not repo.integrity_check()
+
+    # The next day must process normally instead of failing the frozen check.
+    result = upgraded.tick(now_ms=251 * DAY_MS + 10 * 60 * 1000, sync=False)
+    assert result.processed
+    assert not result.processed[0].is_catchup
+
+
 def test_trade_ledger_is_immutable_and_totals_match_account(synthetic_market, tmp_path):
     market_db, _ = synthetic_market
     paper_db = tmp_path / "paper.db"

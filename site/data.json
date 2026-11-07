@@ -1,17 +1,60 @@
 {
-  "strategy": "dual_regime_deadband_allocator 6.0-frozen",
+  "strategy": "dual_regime_deadband_allocator 7.0-aggressive",
+  "strategy_name": "dual_regime_deadband_allocator",
+  "strategy_version": "7.0-aggressive",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-11-06 07:14 UTC",
+  "updated_at": "2026-11-07 00:59 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
   "invested": 0.0,
   "max_drawdown_pct": -5.16,
   "regime": "NEUTRAL",
+  "raw_regime": "NEUTRAL",
+  "regime_meta": {
+    "label": "ZONA MIXTA",
+    "exposure": "hasta 40%",
+    "detail": "Señales encontradas. Compra solo si hay un líder con tendencia positiva; si no, espera en efectivo."
+  },
   "trades": 2,
   "costs": 0.0143,
   "integrity": true,
+  "current": {
+    "kind": "cash",
+    "action": "EN EFECTIVO",
+    "headline": "Ahora mismo no tiene compras abiertas",
+    "explanation": "El mercado está en zona mixta. La regla permite hasta 40% en el líder, pero solo compra si algún activo cumple el filtro de tendencia. Hoy no lo cumple, así que espera en efectivo.",
+    "target_exposure_pct": 0.0,
+    "selected": [],
+    "regime": "NEUTRAL",
+    "regime_label": "ZONA MIXTA",
+    "regime_detail": "Señales encontradas. Compra solo si hay un líder con tendencia positiva; si no, espera en efectivo.",
+    "regime_exposure": "hasta 40%",
+    "next_check": "Cada día a las 00:17 UTC (19:17 Ecuador). Los lunes además rebalancea."
+  },
   "positions": [],
+  "benchmarks": [
+    {
+      "name": "BTCUSDT",
+      "return_pct": -4.06
+    },
+    {
+      "name": "BNBUSDT",
+      "return_pct": -6.18
+    },
+    {
+      "name": "ETHUSDT",
+      "return_pct": -10.03
+    },
+    {
+      "name": "LINKUSDT",
+      "return_pct": -15.05
+    },
+    {
+      "name": "EQUAL_WEIGHT",
+      "return_pct": -10.42
+    }
+  ],
   "equity_curve": [
     {
       "time": "2026-09-08 23:59 UTC",
@@ -250,70 +293,294 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-11-06 07:14 UTC",
+      "time": "2026-11-06 23:59 UTC",
+      "equity": 9.51625535
+    },
+    {
+      "time": "2026-11-07 00:59 UTC",
       "equity": 9.5163
     }
   ],
   "decisions": [
     {
-      "date": "2026-11-06",
+      "date": "2026-11-07",
+      "datetime": "2026-11-07 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
+    },
+    {
+      "date": "2026-11-06",
+      "datetime": "2026-11-06 00:00 UTC",
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-11-05",
+      "datetime": "2026-11-05 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-11-04",
+      "datetime": "2026-11-04 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-11-03",
+      "datetime": "2026-11-03 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-11-02",
+      "datetime": "2026-11-02 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "WEEKLY"
+      "raw_regime": "NEUTRAL",
+      "trigger": "WEEKLY",
+      "trigger_label": "Revisión semanal",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-11-01",
+      "datetime": "2026-11-01 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-10-31",
+      "datetime": "2026-10-31 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-10-30",
+      "datetime": "2026-10-30 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-10-29",
+      "datetime": "2026-10-29 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-10-28",
+      "datetime": "2026-10-28 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "NONE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-10-27",
+      "datetime": "2026-10-27 00:00 UTC",
       "regime": "NEUTRAL",
-      "trigger": "REGIME_CHANGE"
+      "raw_regime": "NEUTRAL",
+      "trigger": "REGIME_CHANGE",
+      "trigger_label": "Cambio de régimen",
+      "reason": "NEUTRAL_CONFIRMED",
+      "reason_text": "Se confirmó el cambio a zona mixta: pasó a efectivo.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Se confirmó el cambio a zona mixta: pasó a efectivo. Sin exposición: 100% en efectivo.",
+      "trades": []
     },
     {
       "date": "2026-10-26",
+      "datetime": "2026-10-26 00:00 UTC",
       "regime": "RECOVERY",
-      "trigger": "WEEKLY"
+      "raw_regime": "NEUTRAL",
+      "trigger": "WEEKLY",
+      "trigger_label": "Revisión semanal",
+      "reason": "WAIT_NEUTRAL_1/2",
+      "reason_text": "Esperando confirmación para salir a efectivo.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Esperando confirmación para salir a efectivo. Sin exposición: 100% en efectivo.",
+      "trades": []
+    },
+    {
+      "date": "2026-10-25",
+      "datetime": "2026-10-25 00:00 UTC",
+      "regime": "RECOVERY",
+      "raw_regime": "RECOVERY",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
+    }
+  ],
+  "recent_trades": [
+    {
+      "date": "2026-09-12",
+      "datetime": "2026-09-12 00:00 UTC",
+      "side": "SELL",
+      "action": "VENDIÓ",
+      "symbol": "LINKUSDT",
+      "quantity": 0.39218762255863204,
+      "notional": 4.530551,
+      "price": 11.546224,
+      "fee": 0.00452829,
+      "trigger": "DEFENSIVE",
+      "regime": "NEUTRAL"
+    },
+    {
+      "date": "2026-09-08",
+      "datetime": "2026-09-08 00:00 UTC",
+      "side": "BUY",
+      "action": "COMPRÓ",
+      "symbol": "LINKUSDT",
+      "quantity": 0.39218762255863204,
+      "notional": 5.0,
+      "price": 12.7553745,
+      "fee": 0.0050025,
+      "trigger": "START",
+      "regime": "RECOVERY"
     }
   ]
 }

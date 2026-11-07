@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from crypto_bot.backtest.allocator_engine import AllocatorBacktestEngine
 from crypto_bot.market.binance import Candle
-from crypto_bot.strategy.allocator import AllocationRules
+from crypto_bot.strategy.allocator import AllocationRules, MarketRegime, RankedAsset
 
 DAY = 24 * 60 * 60 * 1000
 STEP = 15 * 60 * 1000
@@ -163,3 +163,41 @@ def test_fold_start_warms_regime_state_and_aligns_portfolio_on_first_day():
     assert result.events[0].time == start
     assert result.events[0].trigger == "START"
     assert any(leg.side == "BUY" for leg in result.events[0].legs)
+
+
+def test_default_min_order_does_not_deadlock_after_small_drawdown():
+    # Regression: with the old $4.90 floor, a $9.52 account could never fund a
+    # 50% RECOVERY leg or two ~50% STRONG_BULL legs, so it stayed in cash forever.
+    engine = AllocatorBacktestEngine(
+        initial_cash=9.516,
+        rules=AllocationRules(neutral_exposure=0.0, recovery_exposure=0.5, recovery_top_k=1),
+    )
+    ranked = (RankedAsset("AAAUSDT", 100.0, 0.1, 0.2, 0.1),)
+    legs, cash, positions = engine._rebalance(
+        t=0,
+        regime=MarketRegime.RECOVERY,
+        weights={"AAAUSDT": 0.5},
+        ranked=ranked,
+        cash=9.516,
+        positions={},
+        prices={"AAAUSDT": 10.0},
+    )
+    assert [leg.side for leg in legs] == ["BUY"]
+    assert positions["AAAUSDT"] > 0
+    assert cash < 9.516
+
+    two = (
+        RankedAsset("AAAUSDT", 100.0, 0.1, 0.2, 0.1),
+        RankedAsset("BBBUSDT", 50.0, 0.05, 0.1, 0.05),
+    )
+    legs, _, positions = engine._rebalance(
+        t=0,
+        regime=MarketRegime.STRONG_BULL,
+        weights={"AAAUSDT": 0.5, "BBBUSDT": 0.5},
+        ranked=two,
+        cash=9.516,
+        positions={},
+        prices={"AAAUSDT": 10.0, "BBBUSDT": 20.0},
+    )
+    assert {leg.side for leg in legs} == {"BUY"}
+    assert {"AAAUSDT", "BBBUSDT"}.issubset(positions)
