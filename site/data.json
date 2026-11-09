@@ -3,7 +3,7 @@
   "strategy_name": "dual_regime_deadband_allocator",
   "strategy_version": "7.0-aggressive",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-11-08 06:29 UTC",
+  "updated_at": "2026-11-09 06:14 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
@@ -36,23 +36,23 @@
   "benchmarks": [
     {
       "name": "BTCUSDT",
-      "return_pct": -4.13
+      "return_pct": -5.76
     },
     {
       "name": "BNBUSDT",
-      "return_pct": -5.68
+      "return_pct": -7.56
     },
     {
       "name": "ETHUSDT",
-      "return_pct": -10.21
+      "return_pct": -14.46
     },
     {
       "name": "LINKUSDT",
-      "return_pct": -15.73
+      "return_pct": -18.38
     },
     {
       "name": "EQUAL_WEIGHT",
-      "return_pct": -10.54
+      "return_pct": -13.47
     }
   ],
   "equity_curve": [
@@ -301,11 +301,33 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-11-08 06:29 UTC",
+      "time": "2026-11-08 23:59 UTC",
+      "equity": 9.51625535
+    },
+    {
+      "time": "2026-11-09 06:14 UTC",
       "equity": 9.5163
     }
   ],
   "decisions": [
+    {
+      "date": "2026-11-09",
+      "datetime": "2026-11-09 00:00 UTC",
+      "regime": "NEUTRAL",
+      "raw_regime": "NEUTRAL",
+      "trigger": "WEEKLY",
+      "trigger_label": "Revisión semanal",
+      "reason": "STABLE",
+      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
+      "trades": []
+    },
     {
       "date": "2026-11-08",
       "datetime": "2026-11-08 00:00 UTC",
@@ -538,24 +560,6 @@
       "equity": 9.516255,
       "turnover": 0.0,
       "summary": "Se confirmó el cambio a zona mixta: pasó a efectivo. Sin exposición: 100% en efectivo.",
-      "trades": []
-    },
-    {
-      "date": "2026-10-26",
-      "datetime": "2026-10-26 00:00 UTC",
-      "regime": "RECOVERY",
-      "raw_regime": "NEUTRAL",
-      "trigger": "WEEKLY",
-      "trigger_label": "Revisión semanal",
-      "reason": "WAIT_NEUTRAL_1/2",
-      "reason_text": "Esperando confirmación para salir a efectivo.",
-      "action": "ESPERÓ",
-      "action_kind": "cash",
-      "selected": [],
-      "target_exposure_pct": 0.0,
-      "equity": 9.516255,
-      "turnover": 0.0,
-      "summary": "Esperando confirmación para salir a efectivo. Sin exposición: 100% en efectivo.",
       "trades": []
     }
   ],
