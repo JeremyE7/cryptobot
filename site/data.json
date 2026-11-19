@@ -3,18 +3,18 @@
   "strategy_name": "dual_regime_deadband_allocator",
   "strategy_version": "7.0-aggressive",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-11-18 07:44 UTC",
+  "updated_at": "2026-11-19 07:14 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
   "invested": 0.0,
   "max_drawdown_pct": -5.16,
-  "regime": "NEUTRAL",
-  "raw_regime": "NEUTRAL",
+  "regime": "BEAR",
+  "raw_regime": "BEAR",
   "regime_meta": {
-    "label": "ZONA MIXTA",
-    "exposure": "hasta 40%",
-    "detail": "Señales encontradas. Compra solo si hay un líder con tendencia positiva; si no, espera en efectivo."
+    "label": "BAJISTA",
+    "exposure": "0%",
+    "detail": "Tendencia bajista confirmada. Protección total: todo a efectivo."
   },
   "trades": 2,
   "costs": 0.0143,
@@ -23,36 +23,36 @@
     "kind": "cash",
     "action": "EN EFECTIVO",
     "headline": "Ahora mismo no tiene compras abiertas",
-    "explanation": "El mercado está en zona mixta. La regla permite hasta 40% en el líder, pero solo compra si algún activo cumple el filtro de tendencia. Hoy no lo cumple, así que espera en efectivo.",
+    "explanation": "El mercado está en modo bajista confirmado. La regla de protección manda el 100% a efectivo para evitar la caída.",
     "target_exposure_pct": 0.0,
     "selected": [],
-    "regime": "NEUTRAL",
-    "regime_label": "ZONA MIXTA",
-    "regime_detail": "Señales encontradas. Compra solo si hay un líder con tendencia positiva; si no, espera en efectivo.",
-    "regime_exposure": "hasta 40%",
+    "regime": "BEAR",
+    "regime_label": "BAJISTA",
+    "regime_detail": "Tendencia bajista confirmada. Protección total: todo a efectivo.",
+    "regime_exposure": "0%",
     "next_check": "Cada día a las 00:17 UTC (19:17 Ecuador). Los lunes además rebalancea."
   },
   "positions": [],
   "benchmarks": [
     {
       "name": "BTCUSDT",
-      "return_pct": -18.35
+      "return_pct": -19.58
     },
     {
       "name": "BNBUSDT",
-      "return_pct": -19.91
+      "return_pct": -20.42
     },
     {
       "name": "ETHUSDT",
-      "return_pct": -27.27
+      "return_pct": -27.59
     },
     {
       "name": "LINKUSDT",
-      "return_pct": -27.38
+      "return_pct": -28.15
     },
     {
       "name": "EQUAL_WEIGHT",
-      "return_pct": -24.85
+      "return_pct": -25.39
     }
   ],
   "equity_curve": [
@@ -341,11 +341,33 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-11-18 07:44 UTC",
+      "time": "2026-11-18 23:59 UTC",
+      "equity": 9.51625535
+    },
+    {
+      "time": "2026-11-19 07:14 UTC",
       "equity": 9.5163
     }
   ],
   "decisions": [
+    {
+      "date": "2026-11-19",
+      "datetime": "2026-11-19 00:00 UTC",
+      "regime": "BEAR",
+      "raw_regime": "BEAR",
+      "trigger": "REGIME_CHANGE",
+      "trigger_label": "Cambio de régimen",
+      "reason": "BEAR_IMMEDIATE",
+      "reason_text": "Señal bajista: salida inmediata a efectivo.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Señal bajista: salida inmediata a efectivo. Sin exposición: 100% en efectivo.",
+      "trades": []
+    },
     {
       "date": "2026-11-18",
       "datetime": "2026-11-18 00:00 UTC",
@@ -565,24 +587,6 @@
     {
       "date": "2026-11-06",
       "datetime": "2026-11-06 00:00 UTC",
-      "regime": "NEUTRAL",
-      "raw_regime": "NEUTRAL",
-      "trigger": "NONE",
-      "trigger_label": "Revisión diaria",
-      "reason": "STABLE",
-      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
-      "action": "ESPERÓ",
-      "action_kind": "cash",
-      "selected": [],
-      "target_exposure_pct": 0.0,
-      "equity": 9.516255,
-      "turnover": 0.0,
-      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
-      "trades": []
-    },
-    {
-      "date": "2026-11-05",
-      "datetime": "2026-11-05 00:00 UTC",
       "regime": "NEUTRAL",
       "raw_regime": "NEUTRAL",
       "trigger": "NONE",
