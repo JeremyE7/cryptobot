@@ -3,7 +3,7 @@
   "strategy_name": "dual_regime_deadband_allocator",
   "strategy_version": "7.0-aggressive",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-11-19 07:44 UTC",
+  "updated_at": "2026-11-20 06:59 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
@@ -36,23 +36,23 @@
   "benchmarks": [
     {
       "name": "BTCUSDT",
-      "return_pct": -19.58
+      "return_pct": -21.56
     },
     {
       "name": "BNBUSDT",
-      "return_pct": -20.36
+      "return_pct": -22.59
     },
     {
       "name": "ETHUSDT",
-      "return_pct": -27.61
+      "return_pct": -29.72
     },
     {
       "name": "LINKUSDT",
-      "return_pct": -28.11
+      "return_pct": -30.16
     },
     {
       "name": "EQUAL_WEIGHT",
-      "return_pct": -25.36
+      "return_pct": -27.49
     }
   ],
   "equity_curve": [
@@ -345,11 +345,33 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-11-19 07:44 UTC",
+      "time": "2026-11-19 23:59 UTC",
+      "equity": 9.51625535
+    },
+    {
+      "time": "2026-11-20 06:59 UTC",
       "equity": 9.5163
     }
   ],
   "decisions": [
+    {
+      "date": "2026-11-20",
+      "datetime": "2026-11-20 00:00 UTC",
+      "regime": "BEAR",
+      "raw_regime": "BEAR",
+      "trigger": "NONE",
+      "trigger_label": "Revisión diaria",
+      "reason": "BEAR_IMMEDIATE",
+      "reason_text": "Señal bajista: salida inmediata a efectivo.",
+      "action": "ESPERÓ",
+      "action_kind": "cash",
+      "selected": [],
+      "target_exposure_pct": 0.0,
+      "equity": 9.516255,
+      "turnover": 0.0,
+      "summary": "Señal bajista: salida inmediata a efectivo. Sin exposición: 100% en efectivo.",
+      "trades": []
+    },
     {
       "date": "2026-11-19",
       "datetime": "2026-11-19 00:00 UTC",
@@ -569,24 +591,6 @@
     {
       "date": "2026-11-07",
       "datetime": "2026-11-07 00:00 UTC",
-      "regime": "NEUTRAL",
-      "raw_regime": "NEUTRAL",
-      "trigger": "NONE",
-      "trigger_label": "Revisión diaria",
-      "reason": "STABLE",
-      "reason_text": "Sin cambio de régimen: mantiene la asignación actual.",
-      "action": "ESPERÓ",
-      "action_kind": "cash",
-      "selected": [],
-      "target_exposure_pct": 0.0,
-      "equity": 9.516255,
-      "turnover": 0.0,
-      "summary": "Sin cambio de régimen: mantiene la asignación actual. Sin exposición: 100% en efectivo.",
-      "trades": []
-    },
-    {
-      "date": "2026-11-06",
-      "datetime": "2026-11-06 00:00 UTC",
       "regime": "NEUTRAL",
       "raw_regime": "NEUTRAL",
       "trigger": "NONE",
