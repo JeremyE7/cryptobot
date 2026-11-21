@@ -4,7 +4,7 @@ Strategy       : dual_regime_deadband_allocator 7.0-aggressive (FROZEN)
 Started        : 2026-09-07 19:00 UTC
 First eligible : 2026-09-08 00:00 UTC
 Last processed : 2026-11-21 00:00 UTC
-Market mark    : 2026-11-21 06:59 UTC
+Market mark    : 2026-11-21 07:29 UTC
 Initial        : $10.0000
 Equity         : $9.5163
 Return         : -4.84%
@@ -20,11 +20,11 @@ Positions:
   CASH
 
 Forward benchmarks from the exact paper start:
-  BTCUSDT        -26.60%
-  BNBUSDT        -28.83%
-  ETHUSDT        -34.12%
-  LINKUSDT       -34.07%
-  EQUAL_WEIGHT   -32.34%
+  BTCUSDT        -26.49%
+  BNBUSDT        -28.78%
+  ETHUSDT        -34.36%
+  LINKUSDT       -34.43%
+  EQUAL_WEIGHT   -32.52%
 
 Integrity:
   PASS SQLite + ledger/account totals consistent
