@@ -3,7 +3,7 @@
   "strategy_name": "dual_regime_deadband_allocator",
   "strategy_version": "7.0-aggressive",
   "started_at": "2026-09-07 19:00 UTC",
-  "updated_at": "2026-11-27 08:14 UTC",
+  "updated_at": "2026-11-27 08:59 UTC",
   "equity": 9.5163,
   "return_pct": -4.84,
   "cash": 9.5163,
@@ -36,23 +36,23 @@
   "benchmarks": [
     {
       "name": "BTCUSDT",
-      "return_pct": -21.78
+      "return_pct": -21.97
     },
     {
       "name": "BNBUSDT",
-      "return_pct": -23.46
+      "return_pct": -23.72
     },
     {
       "name": "ETHUSDT",
-      "return_pct": -30.28
+      "return_pct": -30.49
     },
     {
       "name": "LINKUSDT",
-      "return_pct": -24.72
+      "return_pct": -24.5
     },
     {
       "name": "EQUAL_WEIGHT",
-      "return_pct": -26.15
+      "return_pct": -26.23
     }
   ],
   "equity_curve": [
@@ -377,7 +377,7 @@
       "equity": 9.51625535
     },
     {
-      "time": "2026-11-27 08:14 UTC",
+      "time": "2026-11-27 08:59 UTC",
       "equity": 9.5163
     }
   ],
